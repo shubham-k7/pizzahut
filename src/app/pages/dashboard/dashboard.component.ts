@@ -35,6 +35,8 @@ export class Dashboard {
   		this.myDate.locale = 'en-IN';
   	 	// this.children = new Map<string,any>();
   	}
+  	// Galleria Marker.
+  	// You are Here!
   	lat: number = 28.4674579;
   	lng: number = 77.0822735;
   	getChartData(event: any,chartid: string): void {
@@ -316,7 +318,6 @@ export class Dashboard {
 		}
 		else
 			shallowCopy = this.filter;
-		console.log(JSON.stringify(shallowCopy));
 		this.children['table']._child.update(shallowCopy);
 	}
 	
