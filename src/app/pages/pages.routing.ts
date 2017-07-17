@@ -12,6 +12,7 @@ export const routes: Routes = [
     component: Pages,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' ,canActivate: [AuthGuard]},
+      { path: 'trackme', loadChildren: './trackme/trackme.module#TrackMeModule',canActivate: [AuthGuard]},
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule',canActivate: [AuthGuard] },
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' ,canActivate: [AuthGuard]},
       { path: 'components', loadChildren: './components/components.module#ComponentsModule',canActivate: [AuthGuard] },

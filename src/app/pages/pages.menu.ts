@@ -15,6 +15,18 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'trackme',
+        data: {
+          menu: {
+            title: 'TrackMe',
+            icon: 'ion-ios-location-outline',
+            selected: false,
+            expanded: false,
+            order: 600,
+          }
+        }
+      },
+      {
         path: 'editors',
         data: {
           menu: {
