@@ -21,8 +21,10 @@ HighchartsExportData(Highcharts);
 import { DateAdapter } from '@angular/material';
 import { DateLocale } from 'md2';
 import { Month } from '../../../assets/month';
+// import {CarService} from './car.service';
 
 import { LocalDataSource } from 'ng2-smart-table';
+
 @Component({
   selector: 'dashboard',
   styleUrls: ['./dashboard.scss'],
@@ -343,6 +345,6 @@ export class Dashboard {
   	@ViewChild('table') table: SmartTables;
   	ngOnInit() {
   		this.children['table'] = {_child: this.table};
-  		this.getKPIs()
+  		this.getKPIs();
   	}
 }

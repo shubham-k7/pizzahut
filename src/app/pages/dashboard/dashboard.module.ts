@@ -37,9 +37,11 @@ import { ChartDataService } from './charts/chart-data.service';
 import { ChartFilterService } from './charts/chart-filter.service';
 // -----Applet Imports-----
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
+// import { DataListModule } from 'primeng/components/datalist/datalist';
 import { GrowlModule } from 'primeng/components/growl/growl';
 import { MdSelectModule,MdInputModule } from '@angular/material';
 import { Md2Module } from 'md2';
+import { CarService } from './car.service';
 // import { PopularApp } from './popularApp';
 // import { PieChart } from './pieChart';
 // import { TrafficChart } from './trafficChart';
@@ -70,6 +72,7 @@ import { Md2Module } from 'md2';
     MdSelectModule,
     MdInputModule,
     Md2Module,
+    // DataListModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAzpgH7DwowdnmBLbST7MgN5JqerU7oB8w'
     })
@@ -90,6 +93,7 @@ import { Md2Module } from 'md2';
     SmartTablesService,
     ChartDataService,
     ChartFilterService,
+    CarService,
     // CalendarService,
     // FeedService,
     // LineChartService,
