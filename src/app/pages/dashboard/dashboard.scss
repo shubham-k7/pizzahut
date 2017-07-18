@@ -27,3 +27,44 @@
 .agm-map {
   height: 300px;
 }
+.scrollContainer {
+  overflow: auto;
+  position: relative;
+}
+.containter1 { 
+  width: 70%;
+  float: left;
+}
+.containter2 {
+  width: 40%;
+  float: right;
+}
+
+.example-header-image {
+  background-image: url('../../../assets/img/examples/shiba1.jpg');
+  background-size: cover;
+
+}
+.example-card {
+  width: 200px;
+  height: 200px;
+}
+
+#basicContainer.scrollContainer {
+  height: 200px;
+}
+
+#complexContainer.scrollContainer {
+  height: 300px;
+}
+.column {
+  column-count: 2;
+  column-width: 5px;
+}
+.mat-card-header {
+  justify-content: center;
+}
+.mat-card-avatar {
+  height: 80px;
+  width: 80px;
+}

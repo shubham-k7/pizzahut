@@ -30,14 +30,18 @@ export class ChartDataService {
     getKPIs(): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/kpi/';
         let headers = new Headers({'content-type': 'application/json'});
-        headers.append('Authorization', 'Token 6a408c2bc8db8c8dc151a6390ab631f3c1931f6f');
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['token'];
+        token = "Token "+token;
+        headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
         return this.http.get(url,options).map(this.extractData).catch(this.handleError);
     }
     getCharts(kpi: any): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/inscan/report/';
         let headers = new Headers({'content-type': 'application/json'});
-        headers.append('Authorization', 'Token 6a408c2bc8db8c8dc151a6390ab631f3c1931f6f');
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['token'];
+        token = "Token "+token;
+        headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
         let tempList = [];
         for(let version of kpi.versions){
@@ -50,7 +54,9 @@ export class ChartDataService {
     getDrilldownChart(payload: any): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/inscan/report/';
         let headers = new Headers({'content-type': 'application/json'});
-        headers.append('Authorization', 'Token 6a408c2bc8db8c8dc151a6390ab631f3c1931f6f');
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['token'];
+        token = "Token "+token;
+        headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
         payload = JSON.stringify(payload); 
         console.log(payload);
@@ -60,7 +66,9 @@ export class ChartDataService {
     getChartData(payload: any): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/inscan/report/';
         let headers = new Headers({'content-type': 'application/json'});
-        headers.append('Authorization', 'Token 6a408c2bc8db8c8dc151a6390ab631f3c1931f6f');
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['token'];
+        token = "Token "+token;
+        headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
         console.log(JSON.stringify(payload));
         return this.http.post(url, JSON.stringify(payload),options).map(this.extractData).catch(this.handleError);

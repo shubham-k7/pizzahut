@@ -39,24 +39,9 @@ import { ChartFilterService } from './charts/chart-filter.service';
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
 // import { DataListModule } from 'primeng/components/datalist/datalist';
 import { GrowlModule } from 'primeng/components/growl/growl';
-import { MdSelectModule,MdInputModule } from '@angular/material';
+import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
 import { Md2Module } from 'md2';
-import { CarService } from './car.service';
-// import { PopularApp } from './popularApp';
-// import { PieChart } from './pieChart';
-// import { TrafficChart } from './trafficChart';
-// import { UsersMap } from './usersMap';
-// import { LineChart } from './lineChart';
-// import { Feed } from './feed';
-// import { Todo } from './todo';
-// import { Calendar } from './calendar';
-// import { CalendarService } from './calendar/calendar.service';
-// import { FeedService } from './feed/feed.service';
-// import { LineChartService } from './lineChart/lineChart.service';
-// import { PieChartService } from './pieChart/pieChart.service';
-// import { TodoService } from './todo/todo.service';
-// import { TrafficChartService } from './trafficChart/trafficChart.service';
-// import { UsersMapService } from './usersMap/usersMap.service';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 @NgModule({
   imports: [
@@ -72,28 +57,20 @@ import { CarService } from './car.service';
     MdSelectModule,
     MdInputModule,
     Md2Module,
-    // DataListModule,
+    MdCardModule,
+    Ng2PageScrollModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAzpgH7DwowdnmBLbST7MgN5JqerU7oB8w'
     })
   ],
   declarations: [
     Dashboard,
-    SmartTables,
-    // PopularApp,
-    // PieChart,
-    // TrafficChart,
-    // UsersMap,
-    // LineChart,
-    // Feed,
-    // Todo,
-    // Calendar,
+    SmartTables
   ],
   providers: [
     SmartTablesService,
     ChartDataService,
     ChartFilterService,
-    CarService,
     // CalendarService,
     // FeedService,
     // LineChartService,

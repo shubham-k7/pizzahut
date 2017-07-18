@@ -1,8 +1,9 @@
-import {Component,ViewChild} from '@angular/core';
+import {Component,ViewChild,Inject,ElementRef} from '@angular/core';
+import {PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
 import { Observable } from 'rxjs/Rx';
-// import { ChartsComponent } from './charts/charts.component'; 
+import { DOCUMENT } from '@angular/platform-browser';
+// -----Child Components-----
 import { SmartTables } from './smartTables/smartTables.component';
-// import { SmartTablesService } from './smartTables.service';
 // -----Providers-----
 import { ChartDataService } from './charts/chart-data.service';
 // -----Highcharts Imports-----
@@ -21,7 +22,6 @@ HighchartsExportData(Highcharts);
 import { DateAdapter } from '@angular/material';
 import { DateLocale } from 'md2';
 import { Month } from '../../../assets/month';
-// import {CarService} from './car.service';
 
 import { LocalDataSource } from 'ng2-smart-table';
 
@@ -31,14 +31,22 @@ import { LocalDataSource } from 'ng2-smart-table';
   templateUrl: './dashboard.html'
 })
 export class Dashboard {
-  	constructor(private myDate: DateLocale,
+  	constructor(@Inject(DOCUMENT) private document: any,
+  				private pageScrollService: PageScrollService,
+  				private myDate: DateLocale,
   				private chartDataService: ChartDataService) {
   		this.myDate.months = Month;
   		this.myDate.locale = 'en-IN';
-  	 	// this.children = new Map<string,any>();
   	}
   	// Galleria Marker.
   	// You are Here!
+
+  	@ViewChild('basicContainer')
+  	public basicContainer: ElementRef;
+
+  	@ViewChild('complexContainer')
+  	public complexContainer: ElementRef;
+
   	lat: number = 28.4674579;
   	lng: number = 77.0822735;
   	getChartData(event: any,chartid: string): void {
@@ -59,12 +67,6 @@ export class Dashboard {
 				chartName: chartid,
 				version_ids: [version_id],
 				kpi_id: kpi_name,
-				/*dftype: (chartConfigs._selectedvalue!==null)?chartConfigs._selectedvalue.id: 0,
-				mon: chartConfigs._mon,
-				sDate: chartConfigs._sDate,
-				eDate: chartConfigs._eDate,
-				divisions: chartConfigs._divisions,
-				filter: chartConfigs._filter*/
 				chartConfigs: shallowCopy
 			};
 		this.chartDataService.getChartData(payload).subscribe(series => {
@@ -220,7 +222,6 @@ export class Dashboard {
 		console.log(event);
 		let kpi_name = chartid.split('-')[0];
 		console.log(this.kpilist[kpi_name][chartid]._divisions);
-		// this.getNonDrilldownChart([],chartid);
 	}
 	getCharts(kpi: any) {
 		this.chartDataService.getCharts(kpi).subscribe(data => {
