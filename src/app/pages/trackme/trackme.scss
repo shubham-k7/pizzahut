@@ -1,0 +1,46 @@
+.scrollContainer {
+  overflow: auto;
+  position: relative;
+  float: right;
+}
+.containter1 { 
+  width: 70%;
+  float: left;
+}
+.containter2 {
+  width: 40%;
+  float: right;
+}
+
+.example-header-image {
+  background-image: url('../../../assets/img/examples/shiba1.jpg');
+  background-size: cover;
+
+}
+.example-card {
+  width: 150px;
+  height: 200px;
+}
+.example-card-1 {
+  width: 150px;
+  height: 200px;
+}
+
+#basicContainer.scrollContainer {
+  height: 100%;
+}
+
+#complexContainer.scrollContainer {
+  height: 500px;
+}
+.column {
+  column-count: 2;
+  column-width: 5px;
+}
+.mat-card-header {
+  justify-content: center;
+}
+.mat-card-avatar {
+  height: 50px;
+  width: 50px;
+}
