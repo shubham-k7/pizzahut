@@ -18,12 +18,18 @@
 
 }
 .example-card {
-  width: 150px;
-  height: 200px;
+  width: 450px;
+  height: 100%;
 }
 .example-card-1 {
   width: 150px;
-  height: 200px;
+  height: 150px;
+  float:left;
+}
+.example-card-2 {
+  width: 150px;
+  height: 150px;
+  float:right;
 }
 
 #basicContainer.scrollContainer {
@@ -32,6 +38,7 @@
 
 #complexContainer.scrollContainer {
   height: 500px;
+  width: 420px;
 }
 .column {
   column-count: 2;
