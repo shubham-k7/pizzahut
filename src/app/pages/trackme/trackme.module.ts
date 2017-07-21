@@ -4,6 +4,7 @@ import { routing } from './trackme.routing';
 
 import { GMapModule } from 'primeng/primeng';
 import { TrackMe } from './trackme.component';
+import { BikerService } from './biker.service';
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
   ],
   declarations: [
     TrackMe
-  ]
+  ],
+  providers: [BikerService]
 })
 export class TrackMeModule {}

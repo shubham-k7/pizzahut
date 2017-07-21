@@ -1,8 +1,3 @@
-.scrollContainer {
-  overflow: auto;
-  position: relative;
-  float: right;
-}
 .containter1 { 
   width: 70%;
   float: left;
@@ -13,32 +8,52 @@
 }
 
 .example-header-image {
-  background-image: url('../../../assets/img/examples/shiba1.jpg');
   background-size: cover;
 
 }
+::-webkit-scrollbar {
+    width: 0em;
+    height: 0.5em;
+}
 .example-card {
-  width: 450px;
-  height: 100%;
+  width: 85px;
+  height: 85px;
+  margin: 10px 5px 10px 5px;
+  padding: 5px;
+  background: #FFF;
+  border-radius:10px;
 }
 .example-card-1 {
-  width: 150px;
-  height: 150px;
-  float:left;
+  width: 85px;
+  height: 85px;
+  padding: 5px;
+  
+  border-radius: 10px;
 }
-.example-card-2 {
-  width: 150px;
-  height: 150px;
-  float:right;
+.scontainer {
+  position: relative;
+  width: 204px;
+  justify-content: center;
+  background: #cccccc;
+  border-radius: 15px;
+}
+.scrollContainer {
+  overflow: auto;
+  position: relative;
+  height: 485px;
+  width: 100px;
+  justify-content: center;
+  background: #cccccc;
+  display: inline-block;
+}
+#outContainer.scrollContainer {
+  width: 95px;
+  margin-right: 5px;
 }
 
-#basicContainer.scrollContainer {
-  height: 100%;
-}
-
-#complexContainer.scrollContainer {
-  height: 500px;
-  width: 420px;
+#inContainer.scrollContainer {
+  width: 95px;
+  margin-left: 5px;
 }
 .column {
   column-count: 2;

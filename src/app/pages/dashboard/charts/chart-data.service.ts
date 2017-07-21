@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
  
 @Injectable()
 export class ChartDataService {
-    constructor(private http: Http){   }
+    constructor(private http: Http){ }
     
     private extractData(res: Response) {
         let body = res.json();
@@ -30,7 +30,7 @@ export class ChartDataService {
     getKPIs(): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/kpi/';
         let headers = new Headers({'content-type': 'application/json'});
-        var token = JSON.parse(sessionStorage.getItem('currentUser'))['token'];
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['data']['auth_key'];
         token = "Token "+token;
         headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
@@ -54,7 +54,7 @@ export class ChartDataService {
     getDrilldownChart(payload: any): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/inscan/report/';
         let headers = new Headers({'content-type': 'application/json'});
-        var token = JSON.parse(sessionStorage.getItem('currentUser'))['token'];
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['data']['auth_key'];
         token = "Token "+token;
         headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
@@ -66,7 +66,7 @@ export class ChartDataService {
     getChartData(payload: any): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/inscan/report/';
         let headers = new Headers({'content-type': 'application/json'});
-        var token = JSON.parse(sessionStorage.getItem('currentUser'))['token'];
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['data']['auth_key'];
         token = "Token "+token;
         headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});

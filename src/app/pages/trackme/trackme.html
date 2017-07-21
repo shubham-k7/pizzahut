@@ -1,72 +1,37 @@
 <h3>Track Me</h3>
-<p-gmap [options]="options" [style]="{'width':'60%','height':'320px','float':'left'}" ></p-gmap>
-<div class="scrollContainer" #complexContainer id="complexContainer">
-    <!-- <md-card class="example-card"> -->
-    <!-- <md-card> -->
-    <md-card class="example-card-1">
-    <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
-    </md-card-header>
-    <md-card-content>
-    <br>
-    Biker ID
-    <br>
-    ETA:
-  </md-card-content>
-  </md-card>
-  <!-- </md-card> -->
-    <!-- <md-card> -->
-      <md-card class="example-card-2">
-    <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
-    </md-card-header>
-    <md-card-content>
-    <br>
-    Biker ID
-    <br>
-    ETA:
-  </md-card-content>
-  </md-card>
-  
-  <!-- </md-card> -->
-    <!-- <md-card> -->
-      <md-card class="example-card-1">
-    <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
-    </md-card-header>
-    <md-card-content>
-    	<br>
-    	Biker ID
-    	<br>
-    	ETA:
-  </md-card-content>
-  </md-card>
-  <!-- </md-card> -->
-    <!-- <md-card> -->
-
-      <md-card class="example-card-2">
-    <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
-    </md-card-header>
-    <md-card-content>
-    	<br>
-    	Biker ID
-    	<br>
-    	ETA:
-  </md-card-content>
-  <!-- </md-card> -->
-  </md-card>
-    <!-- <md-card> -->
-      <md-card class="example-card-1">
-    <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
-    </md-card-header>
-    <md-card-content>
-    <br>
-    Biker ID
-    <br>
-    ETA:
-  </md-card-content>
-  </md-card>
-  <!-- </md-card> -->
-  </div>
+<!-- <p-gmap [options]="options" [style]="{'width':'60%','height':'320px','float':'left'}" ></p-gmap> -->
+<div class="scontainer">
+<div style="text-align: center;">Store</div>
+<div style="width: 95px;text-align: center;display: inline-block;">IN</div>
+<div style="width: 95px;text-align: center;display: inline-block;">OUT</div>
+<div class="scrollContainer" *ngIf="inBikerList" id="inContainer">
+	<div *ngFor="let biker of inBikerList" class="example-card">
+	EMP
+		<!-- <md-card class="example-card-1">
+		<md-card-header>
+			Emp Code
+		</md-card-header>
+	<md-card-content>
+	<strong>ETA:</strong> 	{{biker.reach_time}}<br>
+	<strong>Distance:</strong>  	{{biker.distance}}<br>
+	<strong>Store:</strong>	 	{{biker.store_name}}
+	</md-card-content>
+	</md-card> -->
+	</div>
+</div>
+<div class="scrollContainer" *ngIf="inBikerList" #complexContainer id="outContainer">
+	<div *ngFor="let biker of inBikerList" class="example-card">
+		EMP
+		<!-- <md-card class="example-card-1">
+		<md-card-header>
+			Emp Code
+		</md-card-header>
+	<md-card-content>
+	<strong>ETA:</strong> 	{{biker.reach_time}}<br>
+	<strong>Distance:</strong>  	{{biker.distance}}<br>
+	<strong>Store:</strong>	 	{{biker.store_name}}
+	</md-card-content>
+	</md-card> -->
+	</div>
+</div>
+</div>

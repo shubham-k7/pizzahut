@@ -10,66 +10,63 @@ import { LocalDataSource } from 'ng2-smart-table';
 })
 export class SmartTables {
 
-  @Input() filter: any;
-  query: string = '';
-  dataTable: any = {title: "Biker"};
-  settings = {
-    actions: false,
-    pager: {
-      perPage: 5
-    },
-    columns: {
-      order_number: {
-        title: 'Order',
-        type: 'number',
+	@Input() filter: any;
+	query: string = '';
+	dataTable: any = {title: "Biker"};
+	settings = {
+		actions: false,
+		pager: {
+			perPage: 5
+		},
+		columns: {
+			order_number: {
+				title: 'Order',
+				type: 'number',
+			},
+			biker_name: {
+				title: 'Biker',
+				type: 'string'
+			},
+			customer_name: {
+				title: 'Customer',
+				type: 'string'
+			},
+			created_time: {
+				title: 'Date/Time',
+				valuePrepareFunction: (value) => {
+					return new Date(value).toLocaleString('en-IN')
+				}
+			},
+			status: {
+				title: 'Status',
+				type: 'string'
+			}
+		}
+	};
 
-      },
-      biker_name: {
-        title: 'Biker',
-        type: 'string'
-      },
-      customer_name: {
-        title: 'Customer',
-        type: 'string'
-      },
-      created_time: {
-        title: 'Date/Time',
-        valuePrepareFunction: (value) => {
-          return new Date(value).toLocaleString('en-IN')}
-      },
-      status: {
-        title: 'Status',
-        type: 'string'
-      }
-    }
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-  today: Date;
-  yesterday: Date;
-  constructor(private service: SmartTablesService) {
-    this.today = new Date();
-    this.yesterday = new Date();
-    this.yesterday.setDate(this.yesterday.getDate()-1);
-    console.log(JSON.stringify(this.filter));
-    var payload = {from_date: this.yesterday.toISOString().substr(0,10),to_date: this.today.toISOString().substr(0,10)};
-    // var payload = {from_date: "2017-07-11",to_date: "2017-07-12"};
-    this.service.getTableData(payload).subscribe((data) => {
-      // console.log(data.data.data);
-      this.source.load(data.data.data);
-    });
-  }
-  update(filter: any) {
-    // console.log(JSON.stringify(filter));
-    this.service.getTableData(filter).subscribe((data) => {
-      this.source.load(data.data.data);
-    });
-  }
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
-  }
+	source: LocalDataSource = new LocalDataSource();
+	today: Date;
+	yesterday: Date;
+	constructor(private service: SmartTablesService) {
+		this.today = new Date();
+		this.yesterday = new Date();
+		this.yesterday.setDate(this.yesterday.getDate()-1);
+		var payload = {from_date: this.yesterday.toISOString().substr(0,10),to_date: this.today.toISOString().substr(0,10)};
+		this.service.getTableData(payload).subscribe((data) => {
+		this.source.load(data.data.data);
+		});
+		}
+		update(filter: any) {
+		// console.log(JSON.stringify(filter));
+		this.service.getTableData(filter).subscribe((data) => {
+		  this.source.load(data.data.data);
+		});
+		}
+		onDeleteConfirm(event): void {
+		if (window.confirm('Are you sure you want to delete?')) {
+		  event.confirm.resolve();
+		} else {
+		  event.confirm.reject();
+		}
+	}
 }
