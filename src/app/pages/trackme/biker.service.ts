@@ -35,10 +35,10 @@ export class BikerService {
 		let options = new RequestOptions({ headers: headers});
 		let var1 = {sc_code: "SFL054-01"};
 		// payload = ;
-		console.log(var1);
-		console.log(options);
-		return Observable.interval(60000).startWith(0).switchMap(() => {
-			return this.http.post(url,JSON.stringify(var1),options).map(this.extractData).catch(this.handleError);
-		});
+		// return Observable.interval(60000).startWith(0).switchMap(() => {
+		// 	return this.http.post(url,JSON.stringify(var1),options).map(this.extractData).catch(this.handleError);
+		// });
+		console.log(JSON.stringify(var1));
+		return this.http.post(url,JSON.stringify(var1)).map(this.extractData).catch(this.handleError);
 	}
 }

@@ -2,26 +2,35 @@
 <!-- <p-gmap [options]="options" [style]="{'width':'60%','height':'320px','float':'left'}" ></p-gmap> -->
 <div class="scontainer">
 <div style="text-align: center;">Store</div>
-<div style="width: 95px;text-align: center;display: inline-block;">IN</div>
-<div style="width: 95px;text-align: center;display: inline-block;">OUT</div>
+<!-- <div style="text-align: center;display: inline-block;" class="example-header-image in">IN</div> -->
+<img src='../../../assets/img/examples/in.svg' style="width: 100px; justify-content: center;">
+<img src='../../../assets/img/examples/out.svg' style="width: 100px; justify-content: center;">
 <div class="scrollContainer" *ngIf="inBikerList" id="inContainer">
 	<div *ngFor="let biker of inBikerList" class="example-card">
-	EMP
-		<!-- <md-card class="example-card-1">
+		<md-card class="example-card-1">
 		<md-card-header>
-			Emp Code
+			<!-- <div md-card-avatar class="example-header-image in"></div> -->
+    		<md-card-title>{{biker.emp_code}}</md-card-title>	
 		</md-card-header>
 	<md-card-content>
-	<strong>ETA:</strong> 	{{biker.reach_time}}<br>
+	{{biker.distance}}
+	<!-- <strong>ETA:</strong> 	{{biker.reach_time}}<br>
 	<strong>Distance:</strong>  	{{biker.distance}}<br>
-	<strong>Store:</strong>	 	{{biker.store_name}}
+	<strong>Store:</strong>	 	{{biker.store_name}} -->
 	</md-card-content>
-	</md-card> -->
+	</md-card>
 	</div>
 </div>
 <div class="scrollContainer" *ngIf="inBikerList" #complexContainer id="outContainer">
-	<div *ngFor="let biker of inBikerList" class="example-card">
-		EMP
+	<div *ngFor="let biker of outBikerList" class="example-card">
+		<md-card class="example-card-1">
+		<md-card-header>
+			<!-- <div md-card-avatar class="example-header-image out"></div> -->
+    	<md-card-title>{{biker.emp_code}}</md-card-title>
+		</md-card-header>
+	<md-card-content>
+		{{biker.distance}}
+	</md-card-content></md-card>
 		<!-- <md-card class="example-card-1">
 		<md-card-header>
 			Emp Code

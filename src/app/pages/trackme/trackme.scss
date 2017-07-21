@@ -1,15 +1,15 @@
-.containter1 { 
-  width: 70%;
-  float: left;
+.mat-card-avatar {
+  height: 30px;
+  width: 30px;
 }
-.containter2 {
-  width: 40%;
-  float: right;
-}
-
 .example-header-image {
   background-size: cover;
-
+}
+.in {
+  background-image: url('../../../assets/img/examples/in.svg');
+}
+.out {
+  background-image: url('../../../assets/img/examples/out.svg');
 }
 ::-webkit-scrollbar {
     width: 0em;
@@ -18,21 +18,18 @@
 .example-card {
   width: 85px;
   height: 85px;
-  margin: 10px 5px 10px 5px;
-  padding: 5px;
-  background: #FFF;
   border-radius:10px;
 }
 .example-card-1 {
   width: 85px;
   height: 85px;
-  padding: 5px;
-  
   border-radius: 10px;
+  margin: 10px 5px 10px 5px;
+  padding: 0px !important;
 }
 .scontainer {
   position: relative;
-  width: 204px;
+  width: 214px;
   justify-content: center;
   background: #cccccc;
   border-radius: 15px;
@@ -41,28 +38,16 @@
   overflow: auto;
   position: relative;
   height: 485px;
-  width: 100px;
   justify-content: center;
   background: #cccccc;
   display: inline-block;
 }
 #outContainer.scrollContainer {
-  width: 95px;
+  width: 100px;
   margin-right: 5px;
 }
 
 #inContainer.scrollContainer {
-  width: 95px;
+  width: 100px;
   margin-left: 5px;
-}
-.column {
-  column-count: 2;
-  column-width: 5px;
-}
-.mat-card-header {
-  justify-content: center;
-}
-.mat-card-avatar {
-  height: 50px;
-  width: 50px;
 }
