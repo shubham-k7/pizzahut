@@ -1,8 +1,47 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { SmartTablesService } from './smartTables.service';
 import { LocalDataSource } from 'ng2-smart-table';
 
+import { ViewCell } from 'ng2-smart-table';
+@Component({
+	selector: 'status-view',
+	template: `
+		<div style="border-radius: 10px; text-align: center;" [style.background-color]="color" [style.color]="textColor">{{value}}</div>
+	`
+})
+export class StatusViewComponent implements ViewCell,OnInit {
+	@Input() value: string;
+	color: string;
+	textColor: string;
+	ngOnInit() {
+		if(this.value==='Rider Notified')
+		{
+			this.color = '#5cb85c';
+			this.textColor = '#FFFFFF';
+		}
+		else if(this.value==='Delivered')
+		{
+			this.color = '#00FF00';
+
+		}
+		else if(this.value==='At Gate')
+		{
+			this.color = '#';
+		}
+	}
+}
+/*
+valuePrepareFunction: (value) => {
+					if(value==='Rider Notified')
+						return `<div style="background-color: #5cb85c">{{value}}</div>`;
+					else if(value==='Delivered')
+						return '<div style="background-color: #00FF00">{{value}}</div>';
+					else if(value==='')
+						return '{{value}}';
+					else
+						return '{{value}}';
+				}*/
 @Component({
   selector: 'smart-tables',
   templateUrl: './smartTables.html',
@@ -16,7 +55,7 @@ export class SmartTables {
 	settings = {
 		actions: false,
 		pager: {
-			perPage: 4
+			perPage: 10
 		},
 		columns: {
 			order_number: {
@@ -39,7 +78,8 @@ export class SmartTables {
 			},
 			status: {
 				title: 'Status',
-				type: 'string'
+				type: 'custom',
+				renderComponent: StatusViewComponent
 			}
 		}
 	};

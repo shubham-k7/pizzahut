@@ -1,9 +1,8 @@
 <h3>Track Me</h3>
 <!-- <p-gmap [options]="options" [style]="{'width':'60%','height':'320px','float':'left'}" ></p-gmap> -->
 <div class="scontainer">
-<div style="text-align: center;">Store</div>
 <!-- <div style="text-align: center;display: inline-block;" class="example-header-image in">IN</div> -->
-<div><img src='../../../assets/img/examples/in.svg' style="width: 100px; justify-content: center; vertical-align: bottom;
+<div><img src='../../../assets/img/examples/in.svg' style="height: 75px; justify-content: center; vertical-align: bottom;
     display: inline-block;">
 
 <div class="scrollContainer" *ngIf="inBikerList" id="inContainer">
@@ -23,7 +22,7 @@
 	</div>
 </div>
 </div>
-<div><img src='../../../assets/img/examples/out.svg' style="width: 100px; justify-content: center;vertical-align: bottom;
+<div><img src='../../../assets/img/examples/out.svg' style="height: 75px; justify-content: center;vertical-align: bottom;
     display: inline-block;">
 <div class="scrollContainer" *ngIf="inBikerList" #complexContainer id="outContainer">
 	<div *ngFor="let biker of outBikerList" class="example-card">
@@ -49,9 +48,4 @@
 </div>
 </div>
 </div>
-<div *ngIf="lat && lng">
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let biker of bikersM" [latitude]="biker.latitude" [longitude]="biker.longitude" iconUrl="../../../assets/img/examples/motorcycle.png" [title]="biker.emp_code">
-  </agm-marker> 
-</agm-map>
-</div>
+<smart-tables [filter]="filter" #table></smart-tables>

@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { BikerInOutService } from './biker-in-out.service';
-import { BikerMapService } from './biker-map.service';
+import { SmartTablesService } from '../dashboard/smartTables/smartTables.service';
+
+import { SmartTables } from '../dashboard/smartTables/smartTables.component';
+
 @Component({
 	selector: 'trackme',
 	templateUrl: './trackme.html',
@@ -8,19 +11,23 @@ import { BikerMapService } from './biker-map.service';
 })
 export class TrackMe {
 	constructor(private bioService: BikerInOutService,
-				private bmService: BikerMapService) {}
-	options: any;
-	overlays: any[];
+				private btableService: SmartTablesService) {}
 	inBikerList: any[];
 	outBikerList: any[];
-
-  	lat: number;
-  	lng: number;
-  	bikersM: any[] = [];
+	@ViewChild('table') table: SmartTables;
+	filter = {
+		_selectedvalue: null,
+		_maxDate: null,
+		_mon: null,
+		_sDate: null,
+		_eDate: null,
+		_divisions: null,
+		_filteredDivisions: null,
+		_filter: null,
+	}
 	ngOnInit(){
 		this.SCcode = JSON.parse(sessionStorage.getItem('currentUser'))['response']['sc_code'];
 		this.getBikerIOList();
-		this.getBikerM();
 		// this.inBikerList = [{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
 		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
 		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
@@ -41,17 +48,6 @@ export class TrackMe {
 		},
 		(err) => {
 			console.log(err);
-		});
-	}
-	getBikerM() {
-		this.bmService.getBikers(JSON.stringify({sc_code: this.SCcode}))
-		.subscribe(result => {
-			this.bikersM = result['data'];
-			this.lat = result['store']['store_lat'];
-			this.lng = result['store']['store_lng'];
-		},
-		(err) => {
-			console.error(err);
 		});
 	}
 }
