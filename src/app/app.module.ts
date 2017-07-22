@@ -19,6 +19,9 @@ import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 import { AuthGuard } from './login/auth.guard';
 
+import { AgmCoreModule } from '@agm/core';
+
+
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
@@ -49,7 +52,10 @@ export type StoreType = {
     NgaModule.forRoot(),
     NgbModule.forRoot(),
     PagesModule,
-    routing
+    routing,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAzpgH7DwowdnmBLbST7MgN5JqerU7oB8w'
+    })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,AuthGuard

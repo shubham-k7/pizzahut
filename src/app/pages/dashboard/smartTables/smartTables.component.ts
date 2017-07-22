@@ -16,7 +16,7 @@ export class SmartTables {
 	settings = {
 		actions: false,
 		pager: {
-			perPage: 5
+			perPage: 4
 		},
 		columns: {
 			order_number: {

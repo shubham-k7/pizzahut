@@ -28,7 +28,8 @@ export class ChartFilterService {
 	getFilteredResults(payload: any): Observable<any[]> {
 		var url = 'http://52.70.207.115:8087/api/v1/inscan/report/';
         let headers = new Headers({'content-type': 'application/json'});
-        headers.append('Authorization', 'Token 6a408c2bc8db8c8dc151a6390ab631f3c1931f6f');
+        var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
+        headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
         payload = JSON.stringify(payload);
         return this.http.post(url,payload,options).map(this.extractData).catch(this.handleError);

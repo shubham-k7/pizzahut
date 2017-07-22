@@ -27,6 +27,18 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'bikers',
+        data: {
+          menu: {
+            title: 'Bikers On Map',
+            icon: 'ion-ios-location-outline',
+            selected: false,
+            expanded: false,
+            order: 600,
+          }
+        }
+      },
+      {
         path: 'editors',
         data: {
           menu: {

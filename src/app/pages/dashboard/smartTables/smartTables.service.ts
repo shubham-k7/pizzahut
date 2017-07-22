@@ -9,6 +9,7 @@ export class SmartTablesService {
 
 	constructor(protected http: Http) {}
   	private extractData(res: Response) {
+  		console.log(res)
 		let body = res.json();
 		// console.log(body);
 		return body || { };
@@ -26,13 +27,15 @@ export class SmartTablesService {
 		return Observable.throw(errMsg);
 	}
   	getTableData(payload: any): Observable<any> {
-		var url = 'http://52.70.207.115:8087/pizzahut/v1/order_details/';
-    	let headers = new Headers({'content-type': 'application/json'});
-    	var token = JSON.parse(sessionStorage.getItem('currentUser'))['data']['auth_key'];
-        token = "Token "+token;
-        headers.append('Authorization', token);
+		var url = 'http://phd.prtouch.com/analytics/order_details/';
+ 		// 
+    	let headers = new Headers();
+    	var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
+        headers.append('Authorization', 'umuotmdkm4v9l7p52xm4aidiar1cbq0q');
         let options = new RequestOptions({ headers: headers});
         payload = JSON.stringify(payload);
+        console.log(payload);
+        console.log(headers);
 		return Observable.interval(60000).startWith(0).switchMap(() => {
 			return this.http.post(url,payload,options).map(this.extractData).catch(this.handleError);
 		});

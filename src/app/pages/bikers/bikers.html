@@ -1,0 +1,6 @@
+<div *ngIf="lat && lng">
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker *ngFor="let biker of bikersM" [latitude]="biker.latitude" [longitude]="biker.longitude" iconUrl="../../../assets/img/examples/motorcycle.png" [title]="biker.emp_code">
+  </agm-marker> 
+</agm-map>
+</div>

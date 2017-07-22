@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
  
 @Injectable()
-export class BikerService {
+export class BikerInOutService {
 	constructor(private http: Http){ }
 
 	private extractData(res: Response) {
@@ -29,16 +29,12 @@ export class BikerService {
 	getBikers(payload: any){
 		var url = 'http://phd.prtouch.com/analytics/biker_cur_loc/';
 		let headers = new Headers({'content-type': 'application/json'});
-		/*var token = JSON.parse(sessionStorage.getItem('currentUser'))['data']['auth_key'];
-		token = "Token " + token;
-		headers.append('Authorization', token);*/
+		var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
+		headers.append('Authorization', token);
 		let options = new RequestOptions({ headers: headers});
 		let var1 = {sc_code: "SFL054-01"};
-		// payload = ;
-		// return Observable.interval(60000).startWith(0).switchMap(() => {
-		// 	return this.http.post(url,JSON.stringify(var1),options).map(this.extractData).catch(this.handleError);
-		// });
-		console.log(JSON.stringify(var1));
-		return this.http.post(url,JSON.stringify(var1)).map(this.extractData).catch(this.handleError);
+		return Observable.interval(60000).startWith(0).switchMap(() => {
+			return this.http.post(url,JSON.stringify(var1),options).map(this.extractData).catch(this.handleError);
+		});
 	}
 }

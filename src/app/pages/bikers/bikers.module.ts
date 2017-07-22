@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { routing } from './trackme.routing';
+import { routing } from './bikers.routing';
 import { AgmCoreModule } from '@agm/core';
 
 
-import { TrackMe } from './trackme.component';
-import { BikerInOutService } from './biker-in-out.service';
+import { BikersComponent } from './bikers.component';
 import { BikerMapService } from './biker-map.service';
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
 @NgModule({
@@ -16,8 +15,8 @@ import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
     AgmCoreModule
   ],
   declarations: [
-    TrackMe
+    BikersComponent
   ],
-  providers: [BikerInOutService,BikerMapService]
+  providers: [BikerMapService]
 })
-export class TrackMeModule {}
+export class BikersModule {}

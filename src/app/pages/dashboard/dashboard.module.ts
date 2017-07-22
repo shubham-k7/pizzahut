@@ -59,9 +59,7 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
     Md2Module,
     MdCardModule,
     Ng2PageScrollModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAzpgH7DwowdnmBLbST7MgN5JqerU7oB8w'
-    })
+    AgmCoreModule
   ],
   declarations: [
     Dashboard,

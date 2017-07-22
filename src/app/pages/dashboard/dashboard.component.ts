@@ -346,6 +346,6 @@ export class Dashboard {
   	@ViewChild('table') table: SmartTables;
   	ngOnInit() {
   		this.children['table'] = {_child: this.table};
-  		this.getKPIs();
+  		// this.getKPIs();
   	}
 }

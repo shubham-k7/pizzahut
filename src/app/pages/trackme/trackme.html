@@ -3,14 +3,15 @@
 <div class="scontainer">
 <div style="text-align: center;">Store</div>
 <!-- <div style="text-align: center;display: inline-block;" class="example-header-image in">IN</div> -->
-<img src='../../../assets/img/examples/in.svg' style="width: 100px; justify-content: center;">
-<img src='../../../assets/img/examples/out.svg' style="width: 100px; justify-content: center;">
+<div><img src='../../../assets/img/examples/in.svg' style="width: 100px; justify-content: center; vertical-align: bottom;
+    display: inline-block;">
+
 <div class="scrollContainer" *ngIf="inBikerList" id="inContainer">
 	<div *ngFor="let biker of inBikerList" class="example-card">
 		<md-card class="example-card-1">
 		<md-card-header>
 			<!-- <div md-card-avatar class="example-header-image in"></div> -->
-    		<md-card-title>{{biker.emp_code}}</md-card-title>	
+			<md-card-title>{{biker.emp_code}}</md-card-title>	
 		</md-card-header>
 	<md-card-content>
 	{{biker.distance}}
@@ -21,6 +22,9 @@
 	</md-card>
 	</div>
 </div>
+</div>
+<div><img src='../../../assets/img/examples/out.svg' style="width: 100px; justify-content: center;vertical-align: bottom;
+    display: inline-block;">
 <div class="scrollContainer" *ngIf="inBikerList" #complexContainer id="outContainer">
 	<div *ngFor="let biker of outBikerList" class="example-card">
 		<md-card class="example-card-1">
@@ -43,4 +47,11 @@
 	</md-card> -->
 	</div>
 </div>
+</div>
+</div>
+<div *ngIf="lat && lng">
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker *ngFor="let biker of bikersM" [latitude]="biker.latitude" [longitude]="biker.longitude" iconUrl="../../../assets/img/examples/motorcycle.png" [title]="biker.emp_code">
+  </agm-marker> 
+</agm-map>
 </div>

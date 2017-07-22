@@ -16,15 +16,15 @@ export class AuthenticationService {
 
         let headers = new Headers({'content-type': 'application/json'});
         let options = new RequestOptions({ headers: headers});
-        return this.http.post('http://52.70.207.115:8087/api/authentication/token/',
-         JSON.stringify({ username: username, password: password }),options)
+            console.log(JSON.stringify({data:{ user_name: username, password: password }}));
+        return this.http.post('http://phd.prtouch.com/analytics/user/login/',
+         JSON.stringify({data:{ user_name: username, password: password }}))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 if(response.json()['success']===true)
                 {
-                    let token = response.json()['data']['auth_key'];
                     sessionStorage.setItem('currentUser',
-                        JSON.stringify({ data: response.json()['data']}));
+                        JSON.stringify({ response: response.json()['response']}));
                     // return true to indicate successful login
                     return true;
                 }

@@ -13,6 +13,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' ,canActivate: [AuthGuard]},
       { path: 'trackme', loadChildren: './trackme/trackme.module#TrackMeModule',canActivate: [AuthGuard]},
+      { path: 'bikers', loadChildren: './bikers/bikers.module#BikersModule',canActivate: [AuthGuard]},
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule',canActivate: [AuthGuard] },
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' ,canActivate: [AuthGuard]},
       { path: 'components', loadChildren: './components/components.module#ComponentsModule',canActivate: [AuthGuard] },

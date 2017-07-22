@@ -19,7 +19,7 @@ export class Login {
   	constructor(fb:FormBuilder,private router: Router,private as: AuthenticationService) {
 		this.form = fb.group({
 		  'username': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-		  'password': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+		  'password': ['', Validators.compose([Validators.required, Validators.minLength(1)])]
 		});
 		this.username = this.form.controls['username'];
 		this.password = this.form.controls['password'];
