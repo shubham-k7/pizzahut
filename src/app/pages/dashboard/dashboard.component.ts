@@ -401,7 +401,7 @@ export class Dashboard {
 					borderWidth: 0,
 					dataLabels: {
 						enabled: true,
-						format: '{y} min'
+						format: '{y}'
 					}
 				},
 				column: {
@@ -451,6 +451,8 @@ export class Dashboard {
 		// It's used inside chart confs to access ChartComponent instance
 		conf.chart.name = chartid;
 		conf.chart.renderTo = chartid;
+		conf.plotOptions.series.dataLabels.format = (chartid==='delivery-time')? '{y} min' : '{y}';
+		conf.yAxis.title.text = (chartid==='delivery-time') ? 'Time (Mins)' : 'Count';
 		let prevConfig = this.chartlist[chartid];
 		if(prevConfig) {
 			this.chartlist[chartid] = {...prevConfig,_chart: null};
