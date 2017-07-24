@@ -1,8 +1,58 @@
 <ba-card>
+<div *ngIf="chartlist['delivery-time']">
+<md-select placeholder="Timeline" [(ngModel)]="chartlist['delivery-time']._selectedvalue" (ngModelChange)="selection($event,'delivery-time')" name="option">
+                            <md-option>None</md-option>
+                            <md-option *ngFor="let option of options" [value]="option">{{option.value}}</md-option>
+                            </md-select>
+                            <div *ngIf="chartlist['delivery-time']._selectedvalue && chartlist['delivery-time']._selectedvalue.id===1">
+                                <md2-datepicker name="mon"
+                                placeholder="Month"
+                                [(ngModel)]="chartlist['delivery-time']._mon"
+                                [required]="true"
+                                (onOpen)="setGlobalMaxDate()"
+                                [max]="MAX_DATE"
+                                type="month"
+                                startView="month"
+                                format="MMM y"
+                                touchUi = false
+                                #monthControl="ngModel"
+                                (change)="update($event,'delivery-time')"
+                                ></md2-datepicker>
+                            </div>
+                            <div *ngIf="chartlist['delivery-time']._selectedvalue && chartlist[chartid]._selectedvalue.id===2">
+                                <md2-datepicker name="sDate"
+                                placeholder="Start"
+                                [(ngModel)]="chartlist['delivery-time']._sDate"
+                                [required]="true"
+                                [max]="MAX_DATE"
+                                (onOpen)="setGlobalMaxDate()"
+                                type="date"
+                                startView="month"
+                                format="d MMMM yy"
+                                touchUi = true
+                                #sdateControl="ngModel"
+                                (change)="setMaxDate('delivery-time')"></md2-datepicker>
+                            </div>
+                            <div *ngIf="chartlist['delivery-time']._selectedvalue && chartlist['delivery-time']._selectedvalue.id===2">
+                                <md2-datepicker name="eDate"    
+                                placeholder="End"
+                                (onOpen)="setGlobalMaxDate()"
+                                [(ngModel)]="chartlist['delivery-time']._eDate"
+                                [required]="true"
+                                [min]="chartlist['delivery-time']._sDate"
+                                [max]="chartlist['delivery-time']._maxDate"
+                                type="date"
+                                touchUi = true
+                                startView="month"
+                                format="d MMMM yy"
+                                #edateControl="ngModel"
+                                (change)="update($event,'delivery-time')"></md2-datepicker>
+                            </div>
 <div class="breadcrumb" *ngIf="chartlist['delivery-time']">
 	<li class="breadcrumb-item" *ngFor="let drill of chartlist['delivery-time']._drilldowns">
 		<i>{{drill}}</i>
 	</li>
+</div>
 </div>
   <div id="delivery-time"></div>
 </ba-card>
