@@ -60,11 +60,13 @@ export class Dashboard {
 				series_name: [event.point.series.name],
 				chartConfigs: shallowCopy
 			};
-		console.log(event);
 		this.chartDataService.getChartData(chartid,payload).subscribe(singleSeries => {
 			var chart;
 			chart = comp.chartlist[chartid]._chart;
 			chart.hideLoading();
+			console.log(chart.yAxis[0]);
+			// chart.yAxis[0].removePlotLine();
+			chart.yAxis[0].removePlotLine(event.point.series.name);
 			if(event.points)
 			{
 				comp.series[event.point.series.name]={point: event.point,series: singleSeries};
@@ -74,8 +76,15 @@ export class Dashboard {
 					for(let series of event.target.series) {
 						order.push(series.name);
 					}
+					console.log(comp.series);
 					for(let o of order) {
 						chart.addSingleSeriesAsDrilldown(comp.series[o].point,comp.series[o].series.data[0]);
+						chart.yAxis[0].addPlotLine({
+						value: comp.series[o].series.data[0].average,
+						color: 'red',
+						width: 2,
+						id: comp.series[o].series.data[0].name
+						});
 					}
 					comp.drilldownsAdded=0;
 					comp.series = {};
@@ -91,249 +100,56 @@ export class Dashboard {
 			this.chartlist[chartid]._chart.hideLoading();
 		});
 	}
-	/*chartInit(kpi_name: string,conf: any): string{
-		// Do NOT REMOVE this. 
-		var comp = this;        
-		// It's used inside chart confs to access ChartComponent instance
-		var data = eval('(' + conf + ')');
-		let prevConfig = this.kpilist[kpi_name][data.chart.name];
-		if(prevConfig) {
-			this.kpilist[kpi_name][data.chart.name] = {...prevConfig,_chart: null};
-		}
-		else{
-			this.kpilist[kpi_name][data.chart.name] = {	
-													_chart:  null,
-													_drilldowns: ['All'],
-													_selectedvalue: null,
-													_maxDate: null,
-													_mon: null,
-													_sDate: null,
-													_eDate: null,
-													_divisions: null,
-													_filteredDivisions: null,
-													_filter: null
-												};									
-		}
-		// console.log(this.kpilist);
-		var chart = new Highcharts.Chart(data);
-		this.kpilist[kpi_name][data.chart.name]._chart = chart;
-		chart.options.drilldown.activeDataLabelStyle = { "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "!none","text-transform": "uppercase" };
-		chart.options.drilldown.activeAxisLabelStyle = { "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "!none","text-transform": "uppercase" };
-		chart.options.drilldown.drillUpButton = {
-				relativeTo: 'chart',
-				position: {
-					align: "right",
-					y: 6,
-					x: -50
-				},
-				theme: {
-					fill: 'white',
-					'stroke-width': 1,
-					stroke: 'silver',
-					opacity: 0.5,
-					r: 0,
-					states: {
-						hover: {
-							fill: '#41739D',
-							style: {
-								color: "white"
-							},
-							opacity: 1
-						},
-						select: {
-							stroke: '#039',
-							fill: '#bada55'
-						}
-					}
-				}
-			};
-		return data.chart.name;
-	}*/
-	/**
-	  *	Deprecated as of 2017-07-07
-	  * This was used during Drilldown and refresh,
-	  * however it is deprecated in Non-Drilldown Sirwala Chart.
-	  */
-	getDrilldownChart(chartid: string,source: any) {
-		let x = chartid.split('-'),
-			kpi_name = x[0],
-			version = x[1],
-			chartConfigs = this.chartlist[chartid],
-			check = null,
-			chart = chartConfigs._chart;
-			chart.showLoading("Fetching Data...");
-		if(chart.insertedTable && chart.insertedTableID)
-			check = chart.insertedTableID;
-
-		var shallowCopy = { ...chartConfigs,_chart:  null,_filteredDivisions: null };
-		var payload = {	kpi_id: kpi_name,
-						version_ids: [x[1]],
-						report_type: "0",
-						name: [],
-						series_name:  null,
-						chartConfigs: shallowCopy
-			};
-		this.chartDataService.getDrilldownChart(payload).subscribe(data => {
-			var series = data[0].data;
-			var chartid = this.chartInitPH(kpi_name);
-			var chart = this.chartlist[chartid]._chart;
-			if(source==="datepicker")
-				this.chartlist[chartid]._drilldowns = chartConfigs._drilldowns;
-			for(var i =0; i <series.length;i++)
-				chart.addSeries(series[i]);
-			if(check){
-				chart.insertedTable=true;
-				chart.insertedTableID = check;
-				chart.hideData();
-				chart.viewData();
-			}
-		},
-		(err) => {
-			alert(err);
-			chartConfigs._chart.hideLoading();
-		}
-		);
-	}
-	/*setFilterflag(chartid: string) {
-		setTimeout(()=>{
-			let kpi_name = chartid.split('-')[0],
-				chartConfigs = this.kpilist[kpi_name][chartid];
-			chartConfigs._filter = null;
-			console.log(chartConfigs);
-			if(chartConfigs._selectedvalue && chartConfigs._selectedvalue.id!==0 && (chartConfigs._mon || chartConfigs._eDate || chartConfigs._sDate))
-			{
-				console.log("1");
-				chartConfigs._filter = 1;
-			}
-			else if(chartConfigs._divisions && chartConfigs._divisions.length!==0)
-			{
-				console.log("2");
-				console.log(chartConfigs._divisions.length);
-				chartConfigs._filter = 1;
-
-			}
-			else {
-				chartConfigs._filter = null;
-			}
-		},300);
-	}*/
-	/*check(event: any,chartid: string) {
+	check(event: any,chartid: string) {
 		console.log(event);
-		let kpi_name = chartid.split('-')[0];
-		console.log(this.kpilist[kpi_name][chartid]._divisions);
-	}*/
-	/*getCharts(kpi: any) {
-		this.chartDataService.getCharts(kpi).subscribe(data => {
-			// for each chart in data, Init chart, add Mapping to chart, add series to chart
-			for(var chart of data){
-				var chartid = this.chartInit(kpi.kpi_name,chart.conf);
-				for(var i =0; i<chart.data.length;i++){
-					this.kpilist[kpi.kpi_name][chartid]._chart.addSeries(chart.data[i]);
-				}
-			}
-			console.log(this.kpilist);
-		},
-		(err) => {
-			alert(err);
-		});
-	}*/
-	
-	/*getKPIs() {
-		this.chartDataService.getKPIs().subscribe(res => {
-			var kpis = res['data'],name;
-			this.kpis = kpis;
-			// console.log(kpis);
-			// for each kpi, create kpilist map, getCharts for each KPI. filter charts on kpi.version
-			for(var kpi of kpis){
-				this.getCharts(kpi);
-				this.kpilist[kpi.kpi_name] = new Map<string,any>();
-		   }
-		},
-		(err)=>{
-			alert(err);
-		});
-	}*/
-	update(filter: any) {
-		// console.log(JSON.stringify(filter));
-		this.chartDataService.getCharts(filter).subscribe((data) => {
-
-		});
 	}
-	
-	/*filterDivisions(event,kpi_name: string,version: string) {
-		var chartid = kpi_name+'-'+version,
-			query = event.query,
-			filtered : any[] = [];
-		this.chartFilterService.getFilteredResults(query).subscribe(filtered => {
-			this.kpilist[kpi_name][chartid]._filteredDivisions = filtered;
-		},
-		(err) => {
-			alert(err);
-		});
-		for(let i = 0; i < this.division.length; i++) {
-			let country = this.division[i];
-			if(country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-				filtered.push(country);
-			}
-		}
-		this.filter._filteredDivisions = filtered;
-	}*/
+	update(event: any,chartid: string) {
+		// console.log(JSON.stringify(filter));
+		/*this.chartDataService.getCharts(filter).subscribe((data) => {
+		
+		});*/
+		this.chartlist[chartid]._chart.showLoading();
+		setTimeout(()=> {
+			this.chartlist[chartid]._chart.hideLoading();
+		},200);
+
+	}
 	division = [{name: "India", type: "Country"},
 				 {name: "East", type: "Zone"},	
 				 {name: "Assam", type: "State"},
 				 {name: "Ex.guwahati", type: "City"},
 				 {name: "GUW", type: "DC"}]
-	/*selection(event) {
+	selection(event,chartid: string) {
 		if(!event){
-			this.filter._mon = null;
-			this.filter._sDate = null;
-			this.filter._eDate = null;
-			this.filter._maxDate = null;
+			this.chartlist[chartid]._mon = null;
+			this.chartlist[chartid]._eDate = null;
+			this.chartlist[chartid]._sDate = null;
+			this.chartlist[chartid]._maxDate = null;
+			// this.getChart(chartid,"Selection");
 		}
 		switch((event && event.id))
 		{
 			case 1:
-				this.filter._sDate = null;
-				this.filter._eDate = null;
-				this.filter._maxDate = null;
+				this.chartlist[chartid]._sDate = null;
+				this.chartlist[chartid]._eDate = null;
+				this.chartlist[chartid]._maxDate = null;
 				break;
 			case 2:
-				this.filter._mon = null;
+				this.chartlist[chartid]._mon = null;
 				break;
 		}
-	}*/
+	}
 	setGlobalMaxDate() {
 		this.MAX_DATE = new Date();
 	}
-	/*setMaxDate() {
-		var temp_date = this.filter._sDate;
+	setMaxDate(chartid: string) {
+		var temp_date = this.chartlist[chartid]._sDate;
 		var temp2 = new Date();
 		var temp = new Date(temp_date);
 		temp.setDate(temp.getDate() + 31);
-		this.filter._maxDate = (temp>temp2)?temp2:temp;
-	}*/
-	/*updateChild(event) {
-		var shallowCopy;
-		if(this.filter && this.filter._mon) {
-			shallowCopy = {...this.filter,
-				_mon: new Date(this.filter._mon).toLocaleDateString('en-US')};//.toLocaleString('en-IN');
-		}
-		else
-			shallowCopy = this.filter;
-		this.children['table']._child.update(shallowCopy);
+		this.chartlist[chartid]._maxDate = (temp>temp2)?temp2:temp;
 	}
-	*/
-	/*filter = {
-		_selectedvalue: null,
-		_maxDate: null,
-		_mon: null,
-		_sDate: null,
-		_eDate: null,
-		_divisions: null,
-		_filteredDivisions: null,
-		_filter: null,
-	}*/
-
+	
 	chartInitPH(chartid: string): string{
 		// Do NOT REMOVE this. 
 		var comp = this;
@@ -520,8 +336,16 @@ export class Dashboard {
 		this.chartDataService.getPHChart(chartid,payload)
 			.subscribe(series => {
 				var id = this.chartInitPH(chartid);
+				console.log(series.average);
 				for(var i=0; i<series.data.length;i++){
 					this.chartlist[id]._chart.addSeries(series.data[i]);
+					console.log(series.data[i].average);
+					this.chartlist[id]._chart.yAxis[0].addPlotLine({
+						value: series.data[i].average,
+						color: 'red',
+						width: 2,
+						id: series.data[i].name
+					});
 				}
 			},
 			(err) => {
@@ -531,6 +355,7 @@ export class Dashboard {
 	
 	ngOnInit() {
 		this.drilldownsAdded = 0;
+		this.MAX_DATE = new Date();
 		this.getPHChart("delivery-time");
 		this.getPHChart('order-stats');
 	}
