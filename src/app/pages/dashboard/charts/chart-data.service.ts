@@ -27,6 +27,12 @@ export class ChartDataService {
         return Observable.throw(errMsg);
     }
 
+    getPHChart(id: string,payload: any): Observable<any> {
+        var url = (id==='delivery-time') 
+        ? 'http://phd.prtouch.com/analytics/delivery/' 
+        : 'http://phd.prtouch.com/analytics/order/';
+        return this.http.post(url,JSON.stringify(payload)).map(this.extractData).catch(this.handleError);
+    }
     getKPIs(): Observable<any> {
         var url = 'http://52.70.207.115:8087/api/v1/kpi/';
         url = '';
@@ -61,14 +67,16 @@ export class ChartDataService {
         return this.http.post(url,payload,options).map(this.extractData).catch(this.handleError);
     }
 
-    getChartData(payload: any): Observable<any> {
-        var url = 'http://52.70.207.115:8087/api/v1/inscan/report/';
+    getChartData(chartid: string,payload: any): Observable<any> {
+        var url = (chartid==='delivery-time') 
+        ? 'http://phd.prtouch.com/analytics/delivery/' 
+        : 'http://phd.prtouch.com/analytics/order/';
         let headers = new Headers({'content-type': 'application/json'});
         var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
         headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
         console.log(JSON.stringify(payload));
-        return this.http.post(url, JSON.stringify(payload),options).map(this.extractData).catch(this.handleError);
+        return this.http.post(url, JSON.stringify(payload)).map(this.extractData).catch(this.handleError);
     }
 
 }

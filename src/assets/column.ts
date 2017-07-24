@@ -1,9 +1,9 @@
 declare var comp: any;
 export const conf = {
 	chart: {
-		name: '',
+		name: 'delivery-time',
 		type: 'column',
-		renderTo: '',
+		renderTo: 'delivery-time',
 		zoomType: 'x',
 		panning: true,
 		panKey: 'shift',
@@ -36,7 +36,8 @@ export const conf = {
 					chart.showLoading('Fetching Data ...');
 					console.log(e);
 					var chartid = this.pointer.options.chart.name;
-					comp.getChartData(e, chartid);
+					console.log(comp);
+					comp.getChartDataPH(e, chartid);
 				}
 			},
 			drillupall: function(e) {

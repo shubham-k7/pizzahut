@@ -8,10 +8,6 @@ import { Dashboard } from './dashboard.component';
 import { routing } from './dashboard.routing';
 
 import { AgmCoreModule } from '@agm/core';
-
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { SmartTables } from './smartTables';
-import { SmartTablesService } from './smartTables/smartTables.service';
 // import { ChartsComponent } from './charts/charts.component';
 
 // -----Highcharts Imports-----
@@ -34,7 +30,6 @@ export function highchartsFactory() {
 }
 // -----Provider Imports-----
 import { ChartDataService } from './charts/chart-data.service';
-import { ChartFilterService } from './charts/chart-filter.service';
 // -----Applet Imports-----
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
 // import { DataListModule } from 'primeng/components/datalist/datalist';
@@ -50,7 +45,6 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
     AppTranslationModule,
     NgaModule,
     routing,
-    Ng2SmartTableModule,
     ChartModule,
     AutoCompleteModule,
     GrowlModule,
@@ -63,12 +57,9 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
   ],
   declarations: [
     Dashboard,
-    SmartTables
   ],
   providers: [
-    SmartTablesService,
     ChartDataService,
-    ChartFilterService,
     // CalendarService,
     // FeedService,
     // LineChartService,
