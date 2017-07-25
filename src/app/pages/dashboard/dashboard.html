@@ -1,5 +1,6 @@
-<ba-card>
-<div *ngIf="chartlist['delivery-time']">
+<div class="row">   
+<ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+<!-- <div *ngIf="chartlist['delivery-time']">
 <md-select placeholder="Timeline" [(ngModel)]="chartlist['delivery-time']._selectedvalue" (ngModelChange)="selection($event,'delivery-time')" name="option">
                             <md-option>None</md-option>
                             <md-option *ngFor="let option of options" [value]="option">{{option.value}}</md-option>
@@ -48,22 +49,30 @@
                                 #edateControl="ngModel"
                                 (change)="update($event,'delivery-time')"></md2-datepicker>
                             </div>
+</div> -->
 <div class="breadcrumb" *ngIf="chartlist['delivery-time']">
-	<li class="breadcrumb-item" *ngFor="let drill of chartlist['delivery-time']._drilldowns">
-		<i>{{drill}}</i>
-	</li>
-</div>
+    <li class="breadcrumb-item" *ngFor="let drill of chartlist['delivery-time']._drilldowns">
+        <i>{{drill}}</i>
+    </li>
 </div>
   <div id="delivery-time"></div>
 </ba-card>
-<ba-card>
+<ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
 <div class="breadcrumb" *ngIf="chartlist['order-stats']">
-	<li class="breadcrumb-item" *ngFor="let drill of chartlist['order-stats']._drilldowns">
-		<i>{{drill}}</i>
-	</li>
+    <li class="breadcrumb-item" *ngFor="let drill of chartlist['order-stats']._drilldowns">
+        <i>{{drill}}</i>
+    </li>
 </div>
   <div id="order-stats"></div>
 </ba-card>
-
-<agm-map [latitude]="lat" [longitude]="lng">
-</agm-map>
+</div>
+<h3>Order Heat Map</h3>
+  <ngui-map zoom="13" [center]="mapOptions && mapOptions.center">
+    <!-- <div id="floating-panel">
+      <button (click)="toggleHeatmap()">Toggle Heatmap</button>
+      <button (click)="changeGradient()">Change gradient</button>
+      <button (click)="changeRadius()">Change radius</button>
+      <button (click)="changeOpacity()">Change opacity</button>
+    </div> -->
+    <heatmap-layer [data]="points"></heatmap-layer>
+  </ngui-map>

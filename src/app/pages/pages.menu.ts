@@ -31,7 +31,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Bikers On Map',
-            icon: 'ion-ios-location-outline',
+            icon: 'fa fa-motorcycle',
             selected: false,
             expanded: false,
             order: 600,

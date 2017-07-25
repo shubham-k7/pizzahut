@@ -27,7 +27,17 @@ export class StatusViewComponent implements ViewCell,OnInit {
 		}
 		else if(this.value==='At Gate')
 		{
-			this.color = '#';
+			this.color = '#f0ad4e';
+		}
+		else if(this.value==='Viewed')
+		{
+			this.color = '#dc6767';
+			this.textColor = '#FFFFFF';
+		}
+		else if(this.value==='Picked')
+		{
+			this.color = '#5bc0de';
+			this.textColor = '#FFFFFF';
 		}
 	}
 }

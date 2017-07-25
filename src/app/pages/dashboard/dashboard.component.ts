@@ -1,5 +1,4 @@
-import {Component,ViewChild,Inject,ElementRef} from '@angular/core';
-import {PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
+import {Component,ViewChild,OnInit} from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { DOCUMENT } from '@angular/platform-browser';
 // -----Child Components-----
@@ -8,6 +7,7 @@ import { SmartTables } from './smartTables/smartTables.component';
 import { ChartDataService } from './charts/chart-data.service';
 // -----Highcharts Imports-----
 declare var require: any;
+declare var google: any;
 import { ChartComponent } from 'angular2-highcharts';
 var Highcharts = require('highcharts/highcharts');
 var HighchartsMore = require('highcharts/highcharts-more');
@@ -24,25 +24,20 @@ import { DateAdapter } from '@angular/material';
 import { DateLocale } from 'md2';
 import { Month } from '../../../assets/month';
 
+import { HeatmapLayer } from '@ngui/map';
+import { OrderOnMapService } from './order-on-map.service';
 @Component({
   selector: 'dashboard',
   styleUrls: ['./dashboard.scss'],
   templateUrl: './dashboard.html'
 })
-export class Dashboard {
-	constructor(@Inject(DOCUMENT) private document: any,
-				private pageScrollService: PageScrollService,
-				private myDate: DateLocale,
-				private chartDataService: ChartDataService) {
+export class Dashboard implements OnInit{
+	constructor(private myDate: DateLocale,
+				private chartDataService: ChartDataService,
+				private orderService: OrderOnMapService) {
 		this.myDate.months = Month;
 		this.myDate.locale = 'en-IN';
 	}
-
-	@ViewChild('basicContainer')
-	public basicContainer: ElementRef;
-
-	@ViewChild('complexContainer')
-	public complexContainer: ElementRef;
 
 	lat: number = 28.4674579;
 	lng: number = 77.0822735;
@@ -219,7 +214,8 @@ export class Dashboard {
 					dataLabels: {
 						enabled: true,
 						format: '{y}'
-					}
+					},
+					pointWidth: 0
 				},
 				column: {
 					events: {
@@ -269,6 +265,8 @@ export class Dashboard {
 		conf.chart.name = chartid;
 		conf.chart.renderTo = chartid;
 		conf.plotOptions.series.dataLabels.format = (chartid==='delivery-time')? '{y} min' : '{y}';
+		conf.plotOptions.series.pointWidth = (chartid==='delivery-time')? 40 : null;
+
 		// conf. = (chartid==='delivery-time') ? {title: {text: 'Time (Mins)'},labels: {format: '{value} Min'}} : {text: 'Count'};
 		let prevConfig = this.chartlist[chartid];
 		if(prevConfig) {
@@ -351,11 +349,59 @@ export class Dashboard {
 				alert(err);
 			});
 	}
-	
+	mapOptions: any = {};
+	gradient = [
+      'rgba(0, 255, 255, 0)',
+      'rgba(0, 255, 255, 1)',
+      'rgba(0, 191, 255, 1)',
+      'rgba(0, 127, 255, 1)',
+      'rgba(0, 63, 255, 1)',
+      'rgba(0, 0, 255, 1)',
+      'rgba(0, 0, 223, 1)',
+      'rgba(0, 0, 191, 1)',
+      'rgba(0, 0, 159, 1)',
+      'rgba(0, 0, 127, 1)',
+      'rgba(63, 0, 91, 1)',
+      'rgba(127, 0, 63, 1)',
+      'rgba(191, 0, 31, 1)',
+      'rgba(255, 0, 0, 1)'
+    ];
+	storeLatLng: any;
+	SCcode: string;
+	points: any = [];
+	heatmap: google.maps.visualization.HeatmapLayer;
+	map:google.maps.Map;
+	@ViewChild(HeatmapLayer) heatmapLayer: HeatmapLayer;
 	ngOnInit() {
 		this.drilldownsAdded = 0;
 		this.MAX_DATE = new Date();
 		this.getPHChart("delivery-time");
 		this.getPHChart('order-stats');
+    	this.heatmapLayer.initialized$.subscribe(heatmap => {
+        	this.heatmap = heatmap;
+        	this.map = this.heatmap.getMap()
+    		// this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : this.gradient);
+    	});
+    	// this.points = [
+     //    new google.maps.LatLng(37.782551, -122.445368),
+     //    new google.maps.LatLng(37.782745, -122.444586),
+     //    new google.maps.LatLng(37.782842, -122.443688)
+     //  ];
+		this.SCcode = JSON.parse(sessionStorage.getItem('currentUser'))['response']['sc_code'];
+		this.storeLatLng = JSON.parse(sessionStorage.getItem('currentUser'))['response']['lat_long'];
+    	this.orderService.getOrders({sc_code: this.SCcode})
+    		.subscribe(res => {
+    			this.mapOptions.center = new google.maps.LatLng(Number(res.center.latitude),Number(res.center.longitude));
+    			this.points = [];
+    			for(let co of res.lat_long)
+    			{
+    				// console.log(Number(co.latitude));
+    				let pt = new google.maps.LatLng(co.latitude,co.longitude);
+    				// console.log(pt);
+    				this.points.push(pt);
+
+    			}
+    			console.log(this.points);
+    	});
 	}
 }

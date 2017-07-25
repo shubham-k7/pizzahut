@@ -20,7 +20,7 @@ import { PagesModule } from './pages/pages.module';
 import { AuthGuard } from './login/auth.guard';
 
 import { AgmCoreModule } from '@agm/core';
-
+import { NguiMapModule } from '@ngui/map';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -55,7 +55,9 @@ export type StoreType = {
     routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAzpgH7DwowdnmBLbST7MgN5JqerU7oB8w'
-    })
+    }),
+    NguiMapModule.forRoot({apiUrl: 
+      'https://maps.google.com/maps/api/js?key=AIzaSyAzpgH7DwowdnmBLbST7MgN5JqerU7oB8w&libraries=visualization'})
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,AuthGuard

@@ -1,9 +1,6 @@
 <h3>Track Me</h3>
-<!-- <p-gmap [options]="options" [style]="{'width':'60%','height':'320px','float':'left'}" ></p-gmap> -->
 <div class="scontainer">
-<!-- <div style="text-align: center;display: inline-block;" class="example-header-image in">IN</div> -->
-<div><img src='../../../assets/img/examples/in.svg' style="height: 75px; justify-content: center; vertical-align: bottom; margin-bottom: 11px;
-    display: inline-block;">
+<div><img src='../../../assets/img/examples/in.svg' class="in" style="">
 <div class="scrollContainer" *ngIf="inBikerList" id="inContainer">
 	<div *ngFor="let biker of inBikerList" class="example-card">
 		<md-card class="example-card-1">
@@ -21,8 +18,7 @@
 	</div>
 </div>
 </div>
-<div><img src='../../../assets/img/examples/out.svg' style="height: 75px; justify-content: center;vertical-align: bottom;margin-bottom: 11px;
-    display: inline-block;">
+<div><img src='../../../assets/img/examples/out.svg' class="out">
 <div class="scrollContainer" *ngIf="inBikerList" #complexContainer id="outContainer">
 	<div *ngFor="let biker of outBikerList" class="example-card">
 		<md-card class="example-card-1">
