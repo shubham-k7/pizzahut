@@ -9,7 +9,7 @@ export class SmartTablesService {
 
 	constructor(protected http: Http) {}
   	private extractData(res: Response) {
-  		console.log(res)
+  		// console.log(res)
 		let body = res.json();
 		// console.log(body);
 		return body || { };
@@ -37,7 +37,7 @@ export class SmartTablesService {
         console.log(payload);
         console.log(headers);
 		return Observable.interval(60000).startWith(0).switchMap(() => {
-			return this.http.post(url,payload,options).map(this.extractData).catch(this.handleError);
+			return this.http.post(url,payload).map(this.extractData).catch(this.handleError);
 		});
   	}
 	

@@ -64,8 +64,6 @@ export class Dashboard {
 			var chart;
 			chart = comp.chartlist[chartid]._chart;
 			chart.hideLoading();
-			console.log(chart.yAxis[0]);
-			// chart.yAxis[0].removePlotLine();
 			chart.yAxis[0].removePlotLine(event.point.series.name);
 			if(event.points)
 			{
@@ -202,7 +200,10 @@ export class Dashboard {
 				text: null
 			},
 			xAxis: {
-				type: 'category'
+				type: 'category',
+				labels: {
+					style: { "color": "#003300", "textDecoration": "!none","text-transform": "uppercase" }
+				}
 			},
 			yAxis: {
 				title: {
@@ -268,7 +269,7 @@ export class Dashboard {
 		conf.chart.name = chartid;
 		conf.chart.renderTo = chartid;
 		conf.plotOptions.series.dataLabels.format = (chartid==='delivery-time')? '{y} min' : '{y}';
-		conf.yAxis.title.text = (chartid==='delivery-time') ? 'Time (Mins)' : 'Count';
+		// conf. = (chartid==='delivery-time') ? {title: {text: 'Time (Mins)'},labels: {format: '{value} Min'}} : {text: 'Count'};
 		let prevConfig = this.chartlist[chartid];
 		if(prevConfig) {
 			this.chartlist[chartid] = {...prevConfig,_chart: null};
@@ -336,10 +337,8 @@ export class Dashboard {
 		this.chartDataService.getPHChart(chartid,payload)
 			.subscribe(series => {
 				var id = this.chartInitPH(chartid);
-				console.log(series.average);
 				for(var i=0; i<series.data.length;i++){
 					this.chartlist[id]._chart.addSeries(series.data[i]);
-					console.log(series.data[i].average);
 					this.chartlist[id]._chart.yAxis[0].addPlotLine({
 						value: series.data[i].average,
 						color: 'red',

@@ -11,7 +11,7 @@ export class BikerMapService {
 
 	private extractData(res: Response) {
 		let body = res.json();
-		console.log(body);
+		// console.log(body);
 		return body || { };
 	}
 	private handleError(error: Response | any) {

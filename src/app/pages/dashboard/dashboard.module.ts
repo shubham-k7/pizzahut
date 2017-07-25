@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,Directive } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../app.translation.module';
@@ -37,6 +37,22 @@ import { GrowlModule } from 'primeng/components/growl/growl';
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
 import { Md2Module } from 'md2';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { GoogleMapsAPIWrapper } from '@agm/core';
+
+import { HeatmapLayerManager } from './heatmap-layer-manager';
+
+import { AgmControl } from './control';
+import { AgmHeatmapLayer } from './heatmap-layer';
+
+@Directive({
+  selector: 'agm-map',
+  providers: [HeatmapLayerManager]
+})
+export class AgmMap {
+  constructor(
+    private _wrapper: GoogleMapsAPIWrapper
+  ) {}
+}
 
 @NgModule({
   imports: [
@@ -56,8 +72,9 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
     AgmCoreModule
   ],
   declarations: [
-    Dashboard,
+    Dashboard, AgmHeatmapLayer, AgmMap, AgmControl
   ],
+  exports: [AgmHeatmapLayer, AgmMap, AgmControl, AgmCoreModule],
   providers: [
     ChartDataService,
     // CalendarService,
