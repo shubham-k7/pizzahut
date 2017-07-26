@@ -1,9 +1,9 @@
 <form class="row form-inline form-align">
   <div class="form-group">
-    <input type="number" class="form-control" id="exampleInputName2" placeholder="Order number">
+    <input type="number" class="form-control" name='orderNum' id="exampleInputName2" placeholder="Order number">
   </div>
   <div>
-    <button type="button" class="btn btn-primary">Track</button>
+    <button type="button" (click)="check($event,orderNum)" class="btn btn-primary">Track</button>
   </div>
 </form>
 <div class="row">

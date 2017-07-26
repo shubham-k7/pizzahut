@@ -19,4 +19,8 @@ export class TrackMe {
 			amount: 784.7
 		}
 	}
+	check(event: any, val: any) {
+		console.log(event);
+		console.log(event);
+	}
 }
