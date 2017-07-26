@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 // -----Child Components-----
 import { SmartTables } from './smartTables/smartTables.component';
 // -----Providers-----
-import { ChartDataService } from './charts/chart-data.service';
+import { ChartDataService } from './chart-data.service';
 // -----Highcharts Imports-----
 declare var require: any;
 declare var google: any;
@@ -41,6 +41,7 @@ export class Dashboard implements OnInit{
 
 	lat: number = 28.4674579;
 	lng: number = 77.0822735;
+	colours = ['red','yellow','green'];
 	getChartDataPH(event: any,chartid: string): void {
 		var comp=this,t;
 		t = this.chartlist[chartid]._drilldowns.length;
@@ -59,7 +60,7 @@ export class Dashboard implements OnInit{
 			var chart;
 			chart = comp.chartlist[chartid]._chart;
 			chart.hideLoading();
-			chart.yAxis[0].removePlotLine(event.point.series.name);
+			// chart.yAxis[0].removePlotLine(event.point.series.name);
 			if(event.points)
 			{
 				comp.series[event.point.series.name]={point: event.point,series: singleSeries};
@@ -74,7 +75,7 @@ export class Dashboard implements OnInit{
 						chart.addSingleSeriesAsDrilldown(comp.series[o].point,comp.series[o].series.data[0]);
 						chart.yAxis[0].addPlotLine({
 						value: comp.series[o].series.data[0].average,
-						color: 'red',
+						color: this.colours[chart.drilldownLevels.length],
 						width: 2,
 						id: comp.series[o].series.data[0].name
 						});
@@ -188,6 +189,7 @@ export class Dashboard implements OnInit{
 					drillupall: function(e) {
 						this.hideData();
 						comp.chartlist[this.options.chart.name]._drilldowns.pop();
+						console.log(this);
 					}
 				}
 			},
@@ -381,6 +383,7 @@ export class Dashboard implements OnInit{
         	this.heatmap = heatmap;
         	this.map = this.heatmap.getMap()
     		// this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : this.gradient);
+    		this.heatmap.set('radius', 30);
     	});
     	// this.points = [
      //    new google.maps.LatLng(37.782551, -122.445368),

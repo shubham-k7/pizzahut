@@ -26,15 +26,15 @@ export class BikerInOutService {
 		console.error(errMsg);
 		return Observable.throw(errMsg);
 	}
-	getBikers(payload: any){
+	getBikers(payload: any): Observable<any>{
 		var url = 'http://phd.prtouch.com/analytics/biker_cur_loc/';
 		let headers = new Headers({'content-type': 'application/json'});
 		var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
 		headers.append('Authorization', token);
 		let options = new RequestOptions({ headers: headers});
 		let var1 = {sc_code: "SFL054-01"};
-		return Observable.interval(60000).startWith(0).switchMap(() => {
+		// return Observable.interval(60000).startWith(0).switchMap(() => {
 			return this.http.post(url,JSON.stringify(var1)).map(this.extractData).catch(this.handleError);
-		});
+		// });
 	}
 }

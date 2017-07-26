@@ -1,5 +1,5 @@
 <div class="row">   
-<ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+<ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6" cardTitle="Average Delivery Time">
 <!-- <div *ngIf="chartlist['delivery-time']">
 <md-select placeholder="Timeline" [(ngModel)]="chartlist['delivery-time']._selectedvalue" (ngModelChange)="selection($event,'delivery-time')" name="option">
                             <md-option>None</md-option>
@@ -57,7 +57,7 @@
 </div>
   <div id="delivery-time"></div>
 </ba-card>
-<ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+<ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6" cardTitle="Region Adaptability">
 <div class="breadcrumb" *ngIf="chartlist['order-stats']">
     <li class="breadcrumb-item" *ngFor="let drill of chartlist['order-stats']._drilldowns">
         <i>{{drill}}</i>
@@ -67,7 +67,7 @@
 </ba-card>
 </div>
 <h3>Order Heat Map</h3>
-  <ngui-map zoom="13" [center]="mapOptions && mapOptions.center">
+  <ngui-map [center]="mapOptions && mapOptions.center">
     <!-- <div id="floating-panel">
       <button (click)="toggleHeatmap()">Toggle Heatmap</button>
       <button (click)="changeGradient()">Change gradient</button>

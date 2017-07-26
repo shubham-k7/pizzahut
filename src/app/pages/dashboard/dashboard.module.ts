@@ -26,7 +26,7 @@ export function highchartsFactory() {
     return hc;
 }
 // -----Provider Imports-----
-import { ChartDataService } from './charts/chart-data.service';
+import { ChartDataService } from './chart-data.service';
 // -----Applet Imports-----
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
 import { Md2Module } from 'md2';

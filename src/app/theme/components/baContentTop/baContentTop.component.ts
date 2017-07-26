@@ -10,6 +10,7 @@ import {GlobalState} from '../../../global.state';
 export class BaContentTop {
 
   public activePageTitle:string = '';
+  public activePageLabel:string = '';
 
   constructor(private _state:GlobalState) {
     this._state.subscribe('menu.activeLink', (activeLink) => {
