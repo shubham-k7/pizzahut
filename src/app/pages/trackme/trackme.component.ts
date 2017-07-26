@@ -10,6 +10,7 @@ import { OrderTrackMeService } from './order-trackme.service';
 export class TrackMe {
 	order: any = {};
 	@Input() order_num: number;
+	map: google.maps.Map;
 	constructor(private trackMeService: TrackMeService,
 				private orderTracker: OrderTrackMeService) {
 		this.order = {
@@ -23,29 +24,20 @@ export class TrackMe {
 			amount: 784.7
 		}
 	}
+	ngOnInit() {
+		this.orderTracker.getOrderDetails(this.order_num)
+			.subscribe(res => {
+				this.order = res.order_details;
+			},
+			(err) => {
+				console.error(err);
+			});
+	}
 	check(event: any, val: any) {
 		console.log(event);
 		console.log(event);
 	}
-
 	onMapReady(map) {
 		this.map = map;
-		console.log("map initialised");
-	}
-	map: google.maps.Map;
-	ngOnInit() {
-		// this.orderTracker.getOrderDetails(this.order_num).subscribe(res => {
-		// 	this.order = res['order_details'];
-		// })
-    	// this.trackMeService.getOrders({sc_code: this.SCcode})
-    	// 	.subscribe(res => {
-    	// 		this.mapOptions.center = new google.maps.LatLng(Number(res.center.latitude),Number(res.center.longitude));
-    	// 		this.points = [];
-    	// 		for(let co of res.lat_long)
-    	// 		{
-    	// 			let pt = new google.maps.LatLng(co.latitude,co.longitude);
-    	// 			this.points.push(pt);
-    	// 		}
-    	// });
 	}
 }
