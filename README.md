@@ -3,11 +3,11 @@
 ## Download and Install
 First, clone the directory, cd into folder and install dependencies
 ```bash
-git clone https://github.com/shubham-k7/analytics.git
-cd analytics
+git clone http://ec2-54-165-29-86.compute-1.amazonaws.com/ashutosh/pizzahutdashboard.git <folder name>
+cd <folder name>
 npm install
 ```
-After the dependicies are installed, fix the patched files from [patches](https://github.com/shubham-k7/analytics/tree/master/patches) into the **node_modules** folder into their **respective** modules.
+After the dependicies are installed, fix the patched files from [patches](http://ec2-54-165-29-86.compute-1.amazonaws.com/ashutosh/pizzahutdashboard/tree/master/patches) into the **node_modules** folder into their **respective** modules.
 Now, we can start the program using
 ```bash
 npm start
