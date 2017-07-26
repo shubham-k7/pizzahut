@@ -1,6 +1,10 @@
-<div *ngIf="lat && lng">
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let biker of bikersM" [latitude]="biker.latitude" [longitude]="biker.longitude" iconUrl="../../../assets/img/examples/motorcycle.png" [title]="biker.emp_code">
-  </agm-marker> 
-</agm-map>
-</div>
+<h3>Map</h3>
+
+ <ngui-map center = "28.4676888,77.0831126">
+<!--    <marker position="28.4676888,77.0831126">
+    	
+    </marker> -->
+    <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}">
+    	{{[biker.latitude,biker.longtide]}}
+    </marker>
+  </ngui-map> 
