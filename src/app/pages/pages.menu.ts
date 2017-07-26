@@ -27,6 +27,18 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'store',
+        data: {
+          menu: {
+            title: 'Store Dashboard',
+            icon: 'ion-ios-location-outline',
+            selected: false,
+            expanded: false,
+            order: 600,
+          }
+        }
+      },
+      {
         path: 'bikers',
         data: {
           menu: {

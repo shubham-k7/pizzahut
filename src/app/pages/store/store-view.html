@@ -1,0 +1,44 @@
+<div class="scontainer">
+<div><img src='../../../assets/img/examples/in.svg' class="in" style="">
+<div class="scrollContainer" *ngIf="inBikerList" id="inContainer">
+	<div *ngFor="let biker of inBikerList" class="example-card">
+		<md-card class="example-card-1">
+		<md-card-header class="hi">
+			<!-- <div md-card-avatar class="example-header-image in"></div> -->
+			<md-card-title>{{biker.emp_code | uppercase}}</md-card-title>	
+		</md-card-header>
+	<md-card-content>
+	{{biker.distance | uppercase}}<br>
+	{{biker.reach_time}}
+	</md-card-content>
+	</md-card>
+	</div>
+</div>
+</div>
+<div><img src='../../../assets/img/examples/out.svg' class="out">
+<div class="scrollContainer" *ngIf="inBikerList" #complexContainer id="outContainer">
+	<div *ngFor="let biker of outBikerList" class="example-card">
+		<md-card class="example-card-1">
+		<md-card-header class="hi">
+			<!-- <div md-card-avatar class="example-header-image out"></div> -->
+    	<md-card-title>{{biker.emp_code | uppercase}}</md-card-title>
+		</md-card-header>
+	<md-card-content>
+		{{biker.distance | uppercase}}<br>
+		<!-- {{biker.reach_time}} -->
+	</md-card-content></md-card>
+		<!-- <md-card class="example-card-1">
+		<md-card-header>
+			Emp Code
+		</md-card-header>
+	<md-card-content>
+	<strong>ETA:</strong> 	{{biker.reach_time}}<br>
+	<strong>Distance:</strong>  	{{biker.distance}}<br>
+	<strong>Store:</strong>	 	{{biker.store_name}}
+	</md-card-content>
+	</md-card> -->
+	</div>
+</div>
+</div>
+</div>
+<smart-tables [filter]="filter" #table></smart-tables>

@@ -70,7 +70,6 @@ export class Dashboard implements OnInit{
 					for(let series of event.target.series) {
 						order.push(series.name);
 					}
-					console.log(comp.series);
 					for(let o of order) {
 						chart.addSingleSeriesAsDrilldown(comp.series[o].point,comp.series[o].series.data[0]);
 						chart.yAxis[0].addPlotLine({
@@ -189,7 +188,6 @@ export class Dashboard implements OnInit{
 					drillupall: function(e) {
 						this.hideData();
 						comp.chartlist[this.options.chart.name]._drilldowns.pop();
-						console.log(this);
 					}
 				}
 			},
@@ -288,8 +286,6 @@ export class Dashboard implements OnInit{
 										_filter: null
 									};									
 		}
-		// console.log(this.kpilist);
-		// console.log(conf);
 		var chart = new Highcharts.Chart(conf);
 		this.chartlist[chartid]._chart = chart;
 		chart.options.drilldown.activeDataLabelStyle = { "cursor": "pointer", "color": "#003399", "fontWeight": "bold", "textDecoration": "!none","text-transform": "uppercase" };
@@ -385,11 +381,6 @@ export class Dashboard implements OnInit{
     		// this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : this.gradient);
     		this.heatmap.set('radius', 30);
     	});
-    	// this.points = [
-     //    new google.maps.LatLng(37.782551, -122.445368),
-     //    new google.maps.LatLng(37.782745, -122.444586),
-     //    new google.maps.LatLng(37.782842, -122.443688)
-     //  ];
 		this.SCcode = JSON.parse(sessionStorage.getItem('currentUser'))['response']['sc_code'];
 		this.storeLatLng = JSON.parse(sessionStorage.getItem('currentUser'))['response']['lat_long'];
     	this.orderService.getOrders({sc_code: this.SCcode})
@@ -398,13 +389,9 @@ export class Dashboard implements OnInit{
     			this.points = [];
     			for(let co of res.lat_long)
     			{
-    				// console.log(Number(co.latitude));
     				let pt = new google.maps.LatLng(co.latitude,co.longitude);
-    				// console.log(pt);
     				this.points.push(pt);
-
     			}
-    			console.log(this.points);
     	});
 	}
 }

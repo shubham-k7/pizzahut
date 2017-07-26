@@ -4,12 +4,10 @@ import { routing } from './trackme.routing';
 import { AgmCoreModule } from '@agm/core';
 import { NgaModule } from '../../theme/nga.module';
 
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { SmartTables,StatusViewComponent } from '../dashboard/smartTables/smartTables.component';
-import { SmartTablesService } from '../dashboard/smartTables/smartTables.service';
 import { TrackMe } from './trackme.component';
-import { BikerInOutService } from './biker-in-out.service';
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
+import { NguiMapModule } from '@ngui/map';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,14 +15,12 @@ import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
     NgaModule,
     MdCardModule,
     AgmCoreModule,
-    Ng2SmartTableModule
+    NguiMapModule
   ],
-  entryComponents: [StatusViewComponent],
+  entryComponents: [],
   declarations: [
     TrackMe,
-    SmartTables,
-    StatusViewComponent
   ],
-  providers: [BikerInOutService,SmartTablesService]
+  providers: []
 })
 export class TrackMeModule {}

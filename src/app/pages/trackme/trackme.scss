@@ -1,79 +1,28 @@
 @import "~font-awesome/css/font-awesome.min.css";
-.mat-card-avatar {
-  height: 30px;
-  width: 30px;
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
-.hi {
+
+td {
+    border: 1px solid #dddddd;
     text-align: center;
-    margin-left: 32px !important;
-    margin-top: 9px !important;
+    padding: 8px;
 }
-.example-header-image {
-  background-size: cover;
-}
-.in {
-  height: 75px;
-  justify-content: center;
-  vertical-align: bottom; 
-  margin-bottom: 11px;
-  display: inline-block;
-}
-.out {
-  height: 75px;
-  justify-content: center; 
-  vertical-align: bottom; 
-  margin-bottom: 11px;
-  display: inline-block;
-  -moz-transform: scale(-1, 1);
-  -o-transform: scale(-1, 1);
-  -webkit-transform: scale(-1, 1);
-  transform: scale(-1, 1);
-}
-::-webkit-scrollbar {
-    width: 0em;
-    height: 0em;
-}
-.example-card {
-  border-radius:10px;
-  display: inline-block;
-}
-.example-card-1 {
-  width: 85px;
-  height: 85px;
-  border-radius: 10px;
-  margin: 10px 5px 10px 5px;
-  padding: 0px !important;
-  background-color: #209e91;
-  color: #FFFFFF;
-}
-.scontainer {
-  position: relative;
-  height: 214px;
-  justify-content: center;
-  background-color: #1C2B36;
-  border-radius: 15px;
-}
-.scrollContainer {
-  overflow-x: auto;
-  overflow-y: none;
-  position: relative;
-  justify-content: center;
-  display: inline-block;
-  white-space: nowrap;
-  max-width: 86%;
-  background-color: #1C2B36;
-}
-#outContainer.scrollContainer {
-  margin-left: 5px;
+th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    font-weight: 800;
 }
 
-#inContainer.scrollContainer {
-  margin-left: 5px;
+tr:nth-child(even) {
+    background-color: #dddddd;
 }
-
-.sebm-google-map-container {
-  height: 300px;
-}
-.agm-map {
-  height: 300px;
+.COD {
+    background-color: green;
+    color: white;
+    border-radius: 10px; 
+    text-align: center;
 }

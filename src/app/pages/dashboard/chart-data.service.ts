@@ -53,7 +53,7 @@ export class ChartDataService {
             tempList.push(version.name);
         }
         var payload = JSON.stringify({kpi_id: kpi.kpi_name,version_ids: tempList,report_type: "0",name: [],series_name: "",chartConfigs: {_filter: null}});
-        console.log(payload);
+        // console.log(payload);
         return this.http.post(url,payload,options).map(this.extractData).catch(this.handleError);
     }
     getDrilldownChart(payload: any): Observable<any> {
@@ -63,7 +63,7 @@ export class ChartDataService {
         headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
         payload = JSON.stringify(payload); 
-        console.log(payload);
+        // console.log(payload);
         return this.http.post(url,payload,options).map(this.extractData).catch(this.handleError);
     }
 
@@ -75,7 +75,7 @@ export class ChartDataService {
         var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
         headers.append('Authorization', token);
         let options = new RequestOptions({ headers: headers});
-        console.log(JSON.stringify(payload));
+        // console.log(JSON.stringify(payload));
         return this.http.post(url, JSON.stringify(payload)).map(this.extractData).catch(this.handleError);
     }
 
