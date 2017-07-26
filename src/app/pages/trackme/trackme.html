@@ -81,45 +81,7 @@
   </tr>
 </table>
 </div>
-
 </ba-card>
-
-<ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-<div style="height:600px;">
-	<table>
-  <tr>
-    <th>CHK Number</th>
-    <td>{{order.chk_number}}</td>
-  </tr>
-  <tr>
-    <th>Consignee</th>
-    <td>{{order.consignee}}</td>
-  </tr>
-  <tr>
-    <th>Consignee No</th>
-    <td>{{order.con_num}}</td>
-  </tr>
-  <tr>
-    <th>Biker Name</th>
-    <td>{{order.biker_name}}</td>
-  </tr>
-  <tr>
-    <th>Store</th>
-    <td>{{order.store}}</td>
-  </tr>
-  <tr>
-    <th>Delivery Address</th>
-    <td>{{order.destination}}</td>
-  </tr>
-  <tr>
-    <th>Order Type</th>
-    <td [attr.class]='order.type'>{{order.type}}</td>
-  </tr>
-  <tr>
-    <th>Declared Amount</th>
-    <td>{{order.amount | currency:'INR':true}}</td>
-  </tr>
-</table>
-</div>
-</ba-card>
+<ngui-map center="28.23532, 78.35435" (mapReady$)="onMapReady($event)" [geoFallbackCenter]="[42.99, -77.79]">
+</ngui-map>
 </div>
