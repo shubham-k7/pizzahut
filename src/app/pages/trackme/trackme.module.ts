@@ -7,6 +7,8 @@ import { NgaModule } from '../../theme/nga.module';
 import { TrackMe } from './trackme.component';
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
 import { NguiMapModule } from '@ngui/map';
+import { TrackMeService } from './trackme.service';
+import { OrderTrackMeService } from './order-trackme.service';
 
 @NgModule({
   imports: [
@@ -21,6 +23,6 @@ import { NguiMapModule } from '@ngui/map';
   declarations: [
     TrackMe,
   ],
-  providers: []
+  providers: [TrackMeService,OrderTrackMeService]
 })
 export class TrackMeModule {}
