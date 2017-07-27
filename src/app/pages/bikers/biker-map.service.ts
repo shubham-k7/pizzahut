@@ -27,7 +27,7 @@ export class BikerMapService {
 		return Observable.throw(errMsg);
 	}
 	getBikers(payload: any){
-		var url = 'http://phd.prtouch.com/analytics/bikers_on_map/';
+		var url = 'http://uat.prtouch.com/analytics/bikers_on_map/';
 		let headers = new Headers({'content-type': 'application/json'});
 		var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
 		headers.append('Authorization', token);

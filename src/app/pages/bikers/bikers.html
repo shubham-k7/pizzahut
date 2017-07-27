@@ -4,7 +4,7 @@
 <!--    <marker position="28.4676888,77.0831126">
     	
     </marker> -->
-    <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}">
-    	{{[biker.latitude,biker.longtide]}}
+    <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}" (mouseover)="showInfoWindow($event)">
+    	{{[biker.latitude,biker.longtide]}} 
     </marker>
   </ngui-map> 

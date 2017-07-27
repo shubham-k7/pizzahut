@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BikerMapService } from './biker-map.service';
+import { NguiMapComponent } from '@ngui/map';
 @Component({
 	selector: 'bikers',
 	templateUrl: './bikers.html',
@@ -25,12 +26,30 @@ export class BikersComponent {
 		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
 		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"}];
 	}
+	update(event: any) {
+		console.log(event);
+	}
+
+    showInfoWindow(marker) {
+    	
+		marker.NguiMapComponent.openInfoWindow(
+	'iw', // id of InfoWindow
+	marker, // anchor for InfoWindow
+	{ // local variables for InfoWindow
+	lat: marker.getPosition().lat(),
+	lng: marker.getPosition().lng(),
+	}
+	);
+	}
+
+
 	getBikerM() {
 		this.bmService.getBikers(JSON.stringify({sc_code: this.SCcode}))
 		.subscribe(result => {
 			this.bikersM = result['data'];
 			this.lat = result['store']['store_lat'];
 			this.lng = result['store']['store_lng'];
+			var latlong = new google.maps.LatLng(this.lat,this.lng);
 		},
 		(err) => {
 			console.error(err);
