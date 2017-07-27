@@ -1,3 +1,8 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <pie-chart></pie-chart>
+  </div>
+</div>
 <div class="scontainer">
 <div><img src='../../../assets/img/examples/in.svg' class="in" style="">
 <div class="scrollContainer" *ngIf="inBikerList" id="inContainer">
@@ -10,6 +15,7 @@
 	<md-card-content>
 	{{biker.distance | uppercase}}<br>
 	{{biker.reach_time}}
+	<div><i class="fa fa-info"></i></div>
 	</md-card-content>
 	</md-card>
 	</div>

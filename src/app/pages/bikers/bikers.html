@@ -6,7 +6,7 @@
     </marker> -->
     <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}" (mouseover)="showInfoWindow($event)" (mouseout)="hideInfoWindow($event)">
 	<info-window id="iw">
-      <div *ngIf="marker.display">
+      <div *ngIf="marker && marker.display">
         lat: {{ marker.lat }}, lng: {{ marker.lng }}
       </div>
     </info-window>

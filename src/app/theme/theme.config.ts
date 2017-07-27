@@ -7,7 +7,7 @@ import { colorHelper } from './theme.constants';
 export class BaThemeConfig {
 
   constructor(private _baConfig: BaThemeConfigProvider) {
-    this._baConfig.changeTheme({name: '_mint'});
+    // this._baConfig.changeTheme({name: '_blur'});
   }
 
   config() {

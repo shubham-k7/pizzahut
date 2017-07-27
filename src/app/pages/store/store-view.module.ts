@@ -10,6 +10,9 @@ import { SmartTablesService } from '../dashboard/smartTables/smartTables.service
 import { StoreViewComponent } from './store-view.component';
 import { BikerInOutService } from './biker-in-out.service';
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
+import { PieChart } from './pieChart';
+import { PieChartService } from './pieChart/pieChart.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,8 +26,9 @@ import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';
   declarations: [
     StoreViewComponent,
     SmartTables,
-    StatusViewComponent
+    StatusViewComponent,
+    PieChart
   ],
-  providers: [BikerInOutService,SmartTablesService]
+  providers: [BikerInOutService,SmartTablesService,PieChartService]
 })
 export class StoreViewModule {}

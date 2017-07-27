@@ -15,29 +15,9 @@ export class StoreViewComponent {
 	inBikerList: any[];
 	outBikerList: any[];
 	@ViewChild('table') table: SmartTables;
-	filter = {
-		_selectedvalue: null,
-		_maxDate: null,
-		_mon: null,
-		_sDate: null,
-		_eDate: null,
-		_divisions: null,
-		_filteredDivisions: null,
-		_filter: null,
-	}
 	ngOnInit(){
 		this.SCcode = JSON.parse(sessionStorage.getItem('currentUser'))['response']['sc_code'];
 		this.getBikerIOList();
-		// this.inBikerList = [{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"}];
 	}
 	SCcode: string;
 	getBikerIOList() {
