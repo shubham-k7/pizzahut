@@ -4,7 +4,11 @@
 <!--    <marker position="28.4676888,77.0831126">
     	
     </marker> -->
-    <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}" (mouseover)="showInfoWindow($event)">
-    	{{[biker.latitude,biker.longtide]}} 
+    <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}" (mouseover)="showInfoWindow($event)" (mouseout)="hideInfoWindow($event)">
+	<info-window id="iw">
+      <div *ngIf="marker.display">
+        lat: {{ marker.lat }}, lng: {{ marker.lng }}
+      </div>
+    </info-window>
     </marker>
   </ngui-map> 

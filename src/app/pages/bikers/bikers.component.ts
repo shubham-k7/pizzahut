@@ -15,31 +15,21 @@ export class BikersComponent {
 	ngOnInit(){
 		this.SCcode = JSON.parse(sessionStorage.getItem('currentUser'))['response']['sc_code'];
 		this.getBikerM();
-		// this.inBikerList = [{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"},
-		// 					{emp_code: "125",reach_time: "35 mins",distance: "5 Km",store_name: "Kandivali"}];
 	}
 	update(event: any) {
 		console.log(event);
 	}
 
-    showInfoWindow(marker) {
-    	
+    showInfoWindow(event: any) {
+		let marker = event.target;
 		marker.NguiMapComponent.openInfoWindow(
-	'iw', // id of InfoWindow
-	marker, // anchor for InfoWindow
-	{ // local variables for InfoWindow
-	lat: marker.getPosition().lat(),
-	lng: marker.getPosition().lng(),
-	}
-	);
+		'iw', // id of InfoWindow
+		marker, // anchor for InfoWindow
+		{ // local variables for InfoWindow
+			lat: marker.getPosition().lat(),
+			lng: marker.getPosition().lng(),
+		}
+		);
 	}
 
 
