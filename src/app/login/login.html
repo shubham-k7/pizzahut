@@ -25,7 +25,6 @@
         </div>
       </div>
     </form>
-
     <!-- <div class="auth-sep"><span><span translate>{{'login.sign_from_app_text'}}</span></span></div> -->
 
     <!-- <div class="al-share-auth">
@@ -36,4 +35,8 @@
       </ul>
     </div> -->
   </div>
+     <md-progress-spinner *ngIf="this.submitted==true"
+        class="example-margin"
+        mode="indeterminate">
+    </md-progress-spinner>
 </div>

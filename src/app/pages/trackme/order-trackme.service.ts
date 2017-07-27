@@ -27,7 +27,7 @@ export class OrderTrackMeService {
 		return Observable.throw(errMsg);
 	}
 	getOrderDetails(orderNum: number): Observable<any> {
-		var url = 'http://uat.prtouch.com/analytics/order_tracking/';
+		var url = 'http://phd.prtouch.com/analytics/order_tracking/';
 		let headers = new Headers({'content-type': 'application/json'});
 		var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
 		// headers.append('Authorization', token);

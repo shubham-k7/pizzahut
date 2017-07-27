@@ -49,19 +49,19 @@
 	<table>
   <tr>
     <th>Viewed</th>
-    <td>{{(order.viewed.time=='') ? '-' : order.viewed.time}}</td>
+    <td>{{(order.viewed.time=='') ? '-' : order.viewed.time | date:'hm'}}</td>
   </tr>
   <tr>
     <th>Picked</th>
-    <td>{{(order.picked.time=='') ? '-' : order.picked.time}}</td>
+    <td>{{(order.picked.time=='') ? '-' : order.picked.time | date:'hm'}}</td>
   </tr>
   <tr>
     <th>At Gate</th>
-    <td>{{(order.at_gate.time=='') ? '-' : order.at_gate.time}}</td>
+    <td>{{(order.at_gate.time=='') ? '-' : order.at_gate.time | date:'hm'}}</td>
   </tr>
   <tr>
     <th>Delivered</th>
-    <td>{{(order.delivered.time=='') ? '-' : order.delivered.time}}</td>
+    <td>{{(order.delivered.time=='') ? '-' : order.delivered.time | date:'hm'}}</td>
   </tr>
 </table>
 </div>
