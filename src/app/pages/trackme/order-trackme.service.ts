@@ -27,12 +27,13 @@ export class OrderTrackMeService {
 		return Observable.throw(errMsg);
 	}
 	getOrderDetails(orderNum: number): Observable<any> {
-		var url = 'http://phd.prtouch.com/api/order_details/';
+		var url = 'http://phd.prtouch.com/analytics/order_tracking/';
 		let headers = new Headers({'content-type': 'application/json'});
 		var token = JSON.parse(sessionStorage.getItem('currentUser'))['response']['auth_key'];
-		headers.append('Authorization', token);
+		// headers.append('Authorization', token);
 		let options = new RequestOptions({ headers: headers});
-		var payload = JSON.stringify({order_num: orderNum});
+		var payload = JSON.stringify({awb: orderNum.toString()});
+		console.log(payload);
 		return this.http.post(url,payload).map(this.extractData).catch(this.handleError);
 	}
 }

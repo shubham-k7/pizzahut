@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AppTranslationModule } from '../app.translation.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../theme/nga.module';
-import { MessagesModule } from 'primeng/primeng';
 import { Login } from './login.component';
 import { routing } from './login.routing';
 
 import { AuthenticationService } from './authentication.service';
 import { AuthGuard } from './auth.guard';
+import { MdProgressSpinnerModule,MdSnackBarModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -18,7 +18,8 @@ import { AuthGuard } from './auth.guard';
     FormsModule,
     NgaModule,
     routing,
-    MessagesModule
+    MdProgressSpinnerModule,
+    MdSnackBarModule
   ],
   declarations: [
     Login

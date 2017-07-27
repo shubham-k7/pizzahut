@@ -1,9 +1,9 @@
 <form class="row form-inline form-align">
   <div class="form-group">
-    <input type="number" class="form-control" name='orderNum' id="exampleInputName2" placeholder="Order number">
+    <input type="number" class="form-control" [(ngModel)]="order_num" name='order_num' id="exampleInputName2" placeholder="Order number">
   </div>
   <div>
-    <button type="button" (click)="check($event,orderNum)" class="btn btn-primary">Track</button>
+    <button type="button" (click)="update()" class="btn btn-primary">Track</button>
   </div>
 </form><div class="row">
 <ba-card class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
@@ -11,35 +11,35 @@
 	<table>
   <tr>
     <th>CHK Number</th>
-    <td>{{order.chk_number}}</td>
+    <td>{{order.ships.order_number}}</td>
   </tr>
   <tr>
     <th>Consignee</th>
-    <td>{{order.consignee}}</td>
+    <td>{{order.ships.consignee_name}}</td>
   </tr>
   <tr>
-    <th>Consignee No</th>
-    <td>{{order.con_num}}</td>
+    <th>Consignee Num</th>
+    <td>{{order.ships.consignee_number}}</td>
   </tr>
   <tr>
     <th>Biker Name</th>
-    <td>{{order.biker_name}}</td>
+    <td>{{order.ships.biker_name}}</td>
   </tr>
   <tr>
     <th>Store</th>
-    <td>{{order.store}}</td>
+    <td>{{order.ships.store}}</td>
   </tr>
   <tr>
     <th>Delivery Address</th>
-    <td>{{order.destination}}</td>
+    <td>{{order.ships.consignee_address}}</td>
   </tr>
   <tr>
     <th>Order Type</th>
-    <td [attr.class]='order.type'>{{order.type}}</td>
+    <td [attr.class]='order.ships.product_type'>{{order.ships.product_type}}</td>
   </tr>
   <tr>
     <th>Declared Amount</th>
-    <td>{{order.amount | currency:'INR':true}}</td>
+    <td>{{order.ships.declared_value | currency:'INR':true}}</td>
   </tr>
 </table>
 </div>
@@ -48,40 +48,24 @@
 <div style="margin-top: 40px;">
 	<table>
   <tr>
-    <th>CHK Number</th>
-    <td>{{order.chk_number}}</td>
+    <th>Viewed</th>
+    <td>{{(order.viewed.time=='') ? '-' : order.viewed.time | date:'hm'}}</td>
   </tr>
   <tr>
-    <th>Consignee</th>
-    <td>{{order.consignee}}</td>
+    <th>Picked</th>
+    <td>{{(order.picked.time=='') ? '-' : order.picked.time | date:'hm'}}</td>
   </tr>
   <tr>
-    <th>Consignee No</th>
-    <td>{{order.con_num}}</td>
+    <th>At Gate</th>
+    <td>{{(order.at_gate.time=='') ? '-' : order.at_gate.time | date:'hm'}}</td>
   </tr>
   <tr>
-    <th>Biker Name</th>
-    <td>{{order.biker_name}}</td>
-  </tr>
-  <tr>
-    <th>Store</th>
-    <td>{{order.store}}</td>
-  </tr>
-  <tr>
-    <th>Delivery Address</th>
-    <td>{{order.destination}}</td>
-  </tr>
-  <tr>
-    <th>Order Type</th>
-    <td [attr.class]='order.type'>{{order.type}}</td>
-  </tr>
-  <tr>
-    <th>Declared Amount</th>
-    <td>{{order.amount | currency:'INR':true}}</td>
+    <th>Delivered</th>
+    <td>{{(order.delivered.time=='') ? '-' : order.delivered.time | date:'hm'}}</td>
   </tr>
 </table>
 </div>
 </ba-card>
+</div>
 <ngui-map center="28.23532, 78.35435" (mapReady$)="onMapReady($event)" [geoFallbackCenter]="[42.99, -77.79]">
 </ngui-map>
-</div>

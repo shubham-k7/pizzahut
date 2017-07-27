@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { AuthenticationService } from './authentication.service';
 import { Message } from 'primeng/primeng'; 
+import { MdSnackBar } from '@angular/material';
 @Component({
   selector: 'login',
   templateUrl: './login.html',
@@ -16,7 +17,7 @@ export class Login {
 	public password:AbstractControl;
 	public submitted:boolean = false;
 
-  	constructor(fb:FormBuilder,private router: Router,private as: AuthenticationService) {
+  	constructor(public snackBar: MdSnackBar,fb:FormBuilder,private router: Router,private as: AuthenticationService) {
 		this.form = fb.group({
 		  'username': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
 		  'password': ['', Validators.compose([Validators.required, Validators.minLength(1)])]
@@ -38,11 +39,15 @@ export class Login {
 					else
 					{ 
 						this.error=[];
+						this.snackBar.open('Validation Failed! :( Try Again!','',{duration: 2000,});
+						this.submitted = false;
 						this.error.push({severity:'error', summary:'Error: ', detail:'Validation failed!'});
 					}
 				},
 				 (err) => {
 					this.error=[];
+					this.snackBar.open('Validation Failed! :( Try Again!','',{duration: 2000,});
+					this.submitted = false;
 					this.error.push({severity:'error', summary:'Error: ', detail:'Validation failed!'});
 				 });
 		}

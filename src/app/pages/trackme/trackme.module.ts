@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { routing } from './trackme.routing';
 import { AgmCoreModule } from '@agm/core';
 import { NgaModule } from '../../theme/nga.module';
@@ -13,6 +14,7 @@ import { OrderTrackMeService } from './order-trackme.service';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,    
     routing,
     NgaModule,
     MdCardModule,
