@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BikerMapService } from './biker-map.service';
-import { NguiMapComponent } from '@ngui/map';
+import { NguiMapComponent } from '@ngui/map/src/index';
 @Component({
 	selector: 'bikers',
 	templateUrl: './bikers.html',
@@ -21,8 +21,9 @@ export class BikersComponent {
 	}
 
     showInfoWindow(event: any) {
+    	console.log(event)
 		let marker = event.target;
-		marker.NguiMapComponent.openInfoWindow(
+		marker.nguiMapComponent.openInfoWindow(
 		'iw', // id of InfoWindow
 		marker, // anchor for InfoWindow
 		{ // local variables for InfoWindow
@@ -31,8 +32,13 @@ export class BikersComponent {
 		}
 		);
 	}
-
-
+	closeInfoWindow(event: any) {
+		console.log(event);
+		let marker = event.target;
+		marker.nguiMapComponent.closeInfoWindow(
+		'iw',marker);
+	}
+	
 	getBikerM() {
 		this.bmService.getBikers(JSON.stringify({sc_code: this.SCcode}))
 		.subscribe(result => {
