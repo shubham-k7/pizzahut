@@ -6,7 +6,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { BikersComponent } from './bikers.component';
 import { BikerMapService } from './biker-map.service';
-import { NguiMapModule } from '@ngui/map';
+import { NguiMapModule } from '@ngui/map/src';
 import { OrderOnMapService } from '../dashboard/order-on-map.service';
 
 import { MdSelectModule,MdInputModule,MdCardModule} from '@angular/material';

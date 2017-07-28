@@ -1,14 +1,19 @@
-<h3>Map</h3>
+ <ngui-map center = "28.4676888,77.0831126" >
+ <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}" (mouseover)="showInfoWindow($event)"  
+ (mouseout)="closeInfoWindow($event)" [label]="{{biker.orders || '0'}}" >
 
- <ngui-map center = "28.4676888,77.0831126">
-<!--    <marker position="28.4676888,77.0831126">
-    	
-    </marker> -->
-    <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}" (mouseover)="showInfoWindow($event)" (mouseout)="hideInfoWindow($event)">
+	<!-- 'https://plnkr.co/img/plunker.png' -->
 	<info-window id="iw">
-      <div *ngIf="marker && marker.display">
-        lat: {{ marker.lat }}, lng: {{ marker.lng }}
+	Biker
+      <div >
+       anuj
+        <!-- lat: {{ marker.lat }}, lng: {{ marker.lng }} -->
       </div>
     </info-window>
+
+
     </marker>
+  <!--   <marker *ngFor="let biker of bikersM" position="{{biker.latitude}},{{biker.longitude}}" (mouseover)="showInfoWindow($event)" (mouseout)="hideInfoWindow($event)">
+	
+    </marker> -->
   </ngui-map> 
